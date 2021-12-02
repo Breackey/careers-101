@@ -14,4 +14,4 @@ class LatestPostsFeed(Feed):
         return item.title
     
     def item_description(self, item):
-        return truncatewords(item.body, 30)
+        return truncatewords(item.content, 30)
