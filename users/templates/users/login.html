@@ -1,0 +1,75 @@
+{% extends "users/layout.html" %}
+{% load static %}
+{% load socialaccount %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-md-10 col-lg-7 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          {% if user.is_authenticated %}
+              <p>Welcome, {{ user.username }} !</p>
+
+          {% else %}
+          <h3 class="text-center"><b>Sign In</b></h3>
+          <br />
+          <form class="form-signin">
+            <div class="form-group">
+              <a
+                class="btn btn-outline-dark btn-block"
+                href="{% provider_login_url 'google' %}"
+                ><img
+                  src="{% static 'images/login/gogle.png' %}"
+                  alt="Google"
+                  height="60"
+                  width="60" 
+                  class="d-inline-block mr-2"
+                />Sign In With Google</a
+              >
+              <br />
+
+              <div class="form-group">
+                            <a
+                              class="btn btn-outline-dark btn-block"
+                              href="{% provider_login_url 'facebook' %}"
+                              ><img
+                                src="{% static 'images/login/facebook.png' %}"
+                                alt="Facebook"
+                                height="60"
+                                width="60" 
+                                class="d-inline-block mr-2"
+                              />Sign In With Facebook</a
+                            >
+                            <br />
+
+              <a
+                class="btn btn-outline-dark btn-block"
+                href="{% provider_login_url 'github' %}"
+                ><img
+                  src="{% static 'images/login/github.png' %}"
+                  alt="Github"
+                  height="60"
+                  width="60"
+                  class="d-inline-block mr-2"
+                />Sign In With Github</a
+              >
+              <br />
+              <a
+                class="btn btn-outline-dark btn-block"
+                href="{% provider_login_url 'linkedin_oauth2' %}"
+                ><img
+                  src="{% static 'images/login/linkedin.png' %}"
+                  alt="Linkedin"
+                  height="60"
+                  width="60"
+                  class="d-inline-block mr-2"
+                />Sign In With LinkedIn</a
+              >
+            </div>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

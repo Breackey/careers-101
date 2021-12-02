@@ -1,0 +1,64 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% crispy form form.helper  %}
+
+{% block title %}
+    Unsubscribe
+{% endblock %}
+
+{% block content %}
+    <!-- Content -->
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(images/banner/bnr1.jpg);">
+            <div class="container">
+                <div class="dez-bnr-inr-entry">
+                    <h1 class="text-white">Unsubscribe to Our Newslater</h1>
+					<!-- Breadcrumb row -->
+					<div class="breadcrumb-row">
+						<ul class="list-inline">
+							<li><a href="#">Home</a></li>
+							<li>Unsubscribe</li>
+						</ul>
+					</div>
+					<!-- Breadcrumb row END -->
+                </div>
+            </div>
+        </div>
+        <!-- inner page banner END -->
+		<div class="content-block">
+            <div class="section-full content-inner overlay-white-middle">
+				<div class="container">
+<div class="widget widget-newslatter">
+                                <h6 class="widget-title style-1">Newsletter</h6>
+                                <div class="news-box">
+									<p>Enter your e-mail and unsubscribe to our newsletter.</p>
+
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div {% if messages.tags %} class="{{message.tags}}" {% endif %} role="alert">
+                                               <button typr="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                              {{ message }}
+                                               </div>
+                                        {% endfor %}
+                                    {% else %}
+                                    <form  method="POST">
+
+                                        <div class="input-group">
+										 {% csrf_token %}
+                                         {% crispy form %}										
+										<span class="input-group-btn">
+										<button type="submit" class="site-button ">Unsubscribe Now</button>
+                                        </span>
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+ 
+
+
+    <!-- Content END-->
+{% endblock %}

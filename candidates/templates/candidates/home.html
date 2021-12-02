@@ -1,0 +1,311 @@
+{% extends "users/layout.html" %} 
+{% load static %}
+{% load blog_tags %}
+ {% block content %}
+<br /><br />
+<div class="page-wraper">
+
+    <!-- Content -->
+    <div class="page-content">
+
+											
+ 		<!-- Section Banner -->
+		<div class="dez-bnr-inr dez-bnr-inr-md overlay-black-dark" style="background-image:url(static/images/main-slider/banner2.jpg);">
+            <div class="container">
+                <div class="dez-bnr-inr-entry align-m text-white">
+					<div class=" job-search-form">
+						<h2 class="text-center">The Easiest Way to Get Your New Job</h2>
+						<h3>Find Jobs, Employment & Career Opportunities</h3>
+						<form id="job-main-form"  class="form-signin mt-4" method="get" action="{% url 'job-search-list' %}">
+							<div class="input-group">
+								<input type="text" class="form-control"   name="p" placeholder="Enter Job Title, Skills, Type or Company">
+								<input type="text" class="form-control"   name="q" placeholder="Enter Job Location">
+								<div class="input-group-prepend">
+									<button class="site-button" type="submit" >Search</button>
+								</div>
+							</div>
+						</form>
+						</div>
+            <div class="row">
+      <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
+        {% if user.is_authenticcated %}
+        <p class="text-center">
+          <b
+            >Recruiters/Employers -
+            <a href="{% url 'add-job' %}">Post a Job</a></b
+          >
+        </p>
+        {% else %}
+        <h6 class="fw3" style="color:white; font-weight: bold;">Recruiters/Employers -
+          
+            <a href="{% url 'detail-recruiters' %}">Post a Job</a></h6>
+        {% endif %}
+      </div>
+    </div>
+						<br/>
+            
+
+<div class="section-head d-flex head-counter clearfix">
+					<div class="mr-auto">
+						<h2 class="m-b5">Popular Categories</h2>
+					</div>
+					<div class="head-counter-bx">
+						<h2 class="m-b5 counter">{{ jobs.count}}</h2>
+						<h6 class="fw3" style="color:white; font-weight: bold;">Jobs Posted</h6>
+					</div>
+					<div class="head-counter-bx">
+						<h2 class="m-b5 counter">{{ trendings.count}}</h2>
+						<h6 class="fw3" style="color:white; font-weight: bold;">Trending Jobs</h6>
+					</div>
+					<div class="head-counter-bx">
+						<h2 class="m-b5 counter">{{ user_count }}</h2>
+						<h6 class="fw3"style="color:white; font-weight: bold;">Registered Users</h6>
+					</div>
+ 
+
+				</div>
+
+					</div>
+				</div>
+            </div>
+ 		<!-- Section Banner END -->
+<div style="background-color: white">
+<div class="container">
+ 
+  <div class="container mt-3">
+    
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              <b>Some Popular Search terms:</b><br />
+            </h5>
+            <hr my-2 />
+
+            <form class="form-signin">
+              <div class="form-group">
+                <a
+                  class="btn btn-outline-primary mr-2 mt-2"
+                  href="/job/?p=software&q="
+                  >Software</a
+                >
+                <a
+                  class="btn btn-outline-info mr-2 mt-2"
+                  href="/job/?p=internship&q="
+                  >Internship</a
+                >
+                <a
+                  class="btn btn-outline-danger mr-2 mt-2"
+                  href="/job/?p=product+manager&q="
+                  >Product Manager</a
+                >
+                <a
+                  class="btn btn-outline-secondary mr-2 mt-2"
+                  href="/job/?p=python&q="
+                  >Python</a
+                >
+                <a class="btn btn-outline-dark mr-2 mt-2" href="/job/?p=web&q="
+                  >Web</a
+                >
+                <a
+                  class="btn btn-outline-danger mr-2 mt-2"
+                  href="/job/?p=android&q="
+                  >Android</a
+                >
+                <a
+                  class="btn btn-outline-success mr-2 mt-2"
+                  href="/job/?p=analyst&q="
+                  >Analyst</a
+                >
+                <a
+                  class="btn btn-outline-info mr-2 mt-2"
+                  href="/job/?p=sales&q="
+                  >Sales</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+<div style="background-color: white">
+  <div class="row">
+    <div class="col-md-6">
+      <div style="background: transparent !important" class="jumbotron">
+        <h1 class="display-4 text-center">
+          Make a Difference with Your Online Resume!
+        </h1>
+        <p class="lead text-center">
+          
+          Become visible to employers with your online CV!
+        </p>
+        <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url 'login' %}"
+            role="button"
+            >Create an Account</a
+          >
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img
+        class="img-fluid"
+        src="{% static 'images/home_candidate.jpg' %}"
+        alt="Hiring Image 2"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col md-6 border-right">
+      <div style="background: transparent !important" class="jumbotron">
+        <h1 class="display-5 text-center">
+          1,000+ monthly job vacancies
+
+
+        </h1>
+        <p class="lead text-center">
+          Get connected with jobs from all over the world . So many jobs to pick from what are you waiting for!
+        </p>
+         <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url 'job-search-list' %}"
+            role="button"
+            >Search Jobs</a
+          >
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="background: transparent !important" class="jumbotron">
+        <h1 class="display-5 text-center">Boost Your Career</h1>
+        <p class="lead text-center">
+      Create a profile, get it to a 100% and immediately get noticed by the right recruiters.
+        </p>
+         <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url 'my-profile' %}"
+            role="button"
+            >Create Profile</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col md-6 border-right">
+      <div style="background: transparent !important" class="jumbotron">
+        <h1 class="display-5 text-center">
+          Be the Best Candidate out There!
+        </h1>
+        <p class="lead text-center">
+          
+Get access to career tips and advice and standout from the rest.
+        </p>
+        <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url 'blog:post_list' %}"
+            role="button"
+            >Read our Career Tips</a
+          >
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="background: transparent !important" class="jumbotron">
+        <h1 class="display-5 text-center">
+          Be On The Know
+
+        </h1>
+        <p class="lead text-center">
+          Subscribe to our newsletter and get the latest jobs
+           and career tips delivered straight to your inbox!
+        </p>
+         <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url "newsletter:subscribe" %}"
+            role="button"
+            >Subscribe!</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 md-8 lg-6 mx-auto">
+      <div style="background: transparent !important" class="jumbotron">
+      
+       	<div class="section-head text-black text-center">
+  <h1 class="display-5 text-center">
+          Career Tips
+        </h1>
+        	<p>Read our blogs to get some career hacks to get you moving!</p>
+				</div>
+				<div class="blog-carousel owl-carousel owl-btn-center-lr owl-btn-3 owl-theme owl-btn-center-lr owl-btn-1">
+				{% for post in posts %} 
+				 
+					<div class="item">
+						<div class="blog-post blog-grid blog-style-1">
+							<div class="dez-post-media dez-img-effect radius-sm"> <a href="{{ post.get_absolute_url }}"><img src="static/images/blog/grid/pic3.jpg" alt=""></a> </div>
+							<div class="dez-info">
+								 <div class="dez-post-meta">
+									<ul class="d-flex align-items-center">
+										<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
+										<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">5k</a> </li>
+									</ul>
+								</div>
+								<div class="dez-post-title ">
+									<h5 class="post-title font-20"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+								</div>
+								<div class="dez-post-text">
+										<p>{{ post.content|markdown|truncatewords_html:30 }}</p>
+								</div>
+								<div class="dez-post-readmore blog-share"> 
+									<a href="{{ post.get_absolute_url }}" title="READ MORE" rel="bookmark" class="site-button outline">READ MORE</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				 
+				</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 md-8 lg-6 mx-auto">
+      <div style="background: transparent !important" class="jumbotron">
+        <h1 class="display-5 text-center">Want to be the first to apply for jobs!</h1>
+        <p class="lead text-center">
+          Subscribe to our newsletter to get jobs and career tips as fast as they come!
+        </p>
+        <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url "newsletter:subscribe" %}"
+            role="button"
+            >Subscribe!</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+ 
+</div>
+
+
+  {% endblock content %}
+</div>

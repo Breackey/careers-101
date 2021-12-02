@@ -1,0 +1,57 @@
+{% extends "users/layout.html" %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}Share a post{% endblock %}
+{% block content %}
+
+<div class="page-header" style="background: url(static/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Blog</h2>
+    <ol class="breadcrumb">
+    <li><a href="#">Home /</a></li>
+    <li class="current">Share Post</li>
+    </ol>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <div id="content" class="section-padding">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-8 col-md-12 col-xs-12">   
+        {% if sent %}
+        <h2>E-mail successfully sent</h2>
+        <h3>"{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.</h3>
+    {% else %}
+        <h1>Share "{{ post.title }}" by e-mail</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %} 
+            {% buttons %}
+                <button class="btn btn-common log-btn" type="submit">Send E-mail</button>
+            {% endbuttons %}
+
+           <!--  iterate trough all fields
+            {% for field in form %}
+                <div>
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %} -->
+        </form>
+    {% endif %}
+
+    
+    </div>
+    </div>
+    </div>
+
+
+     
+{% endblock %}
