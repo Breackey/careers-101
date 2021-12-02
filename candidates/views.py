@@ -21,13 +21,13 @@ def home(request):
     posts = Post.objects.all()
     jobs = Job.objects.all()
     trendings = Job.objects.filter(date_posted__month=timezone.now().month)
-    #user_count =  User.objects.count()
+    user_count =  User.objects.count()
     context = {
         'home_page': "active",
         'posts' : posts,
         'jobs' : jobs,
         'trendings' : trendings,
-        #'user_count': user_count
+        'user_count': user_count
     }
 
     return render(request, 'candidates/home.html', context)
