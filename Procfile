@@ -1,1 +1,1 @@
-web: gunicorn careers-101.wsgi --log-file -
+web: gunicorn careers101.wsgi --log-file -
