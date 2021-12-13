@@ -59,14 +59,14 @@ def post_list(request, tag_slug=None, category_slug=None):
                   context)
    
     
-def post_detail(request, year, month, day, post):
-    post = get_object_or_404(Post, slug=post,
+def post_detail(request, year, month, day, slug):
+    post = get_object_or_404(Post, slug=slug,
                              status='published',
                              publish__year=year,
                              publish__month=month,
                              publish__day=day)
     # List of active comments for this post
-    comments = post.comments.filter(active=True)
+    comments = post.comments.filter(active=True).order_by("-created")
     new_comment = None
     if request.method == 'POST':
     # A comment was posted
