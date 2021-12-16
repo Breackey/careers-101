@@ -83,25 +83,7 @@
 												</ul>
 											</div>
 										</div>
-										<div class="d-flex">
-											<div class="job-time mr-auto">
-												<span> {% for skill in skills %}
-													<li>{{skill.skill}}</li>
-													{% endfor %}</span>
-											 
-											</div>
-											<div class="salary-bx">
-												<span> 
-													{% if profile.resume %}
-													<a href="{{ profile.resume.url }}">Click to view resume</a>
-													{% else %}
-													<p>No resume available.</p>
-													{% endif %}
-												</span>
-											</div>
-										</div>
-										<span class="post-like fa fa-heart-o"></span>
-									</a>
+									 
 								</li>
 								{% endfor %}
 								<br />
