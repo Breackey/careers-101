@@ -1,1 +1,1 @@
-ITS NEVER GONNA BE THE SAME WITHOUT YOU. If you want to subscribe again visit http://127.0.0.1:8000/subscribe
+ITS NEVER GONNA BE THE SAME WITHOUT YOU. If you want to subscribe again visit https://careers101.herokuapp.com/newsletter/subscribe
