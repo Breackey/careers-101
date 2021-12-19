@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'taggit',
     'recruiters',
     'candidates',
+    'django_summernote',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
