@@ -24,14 +24,6 @@ class PostListView(ListView):
  
 """ def post_list(request, tag_slug=None, category_slug=None):
     
-    ''' category = None
-    
-    productlist = Product.objects.all()
-    categorylist = Category.objects.annotate(total_products=Count('product'))
-
-    if category_slug :
-        category = get_object_or_404(Category ,slug=category_slug)
-        productlist = productlist.filter(category=category) '''
        
     object_list = Post.published.all()
     tag = None
