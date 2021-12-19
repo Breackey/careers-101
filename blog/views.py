@@ -13,7 +13,19 @@ from django.contrib.postgres.search import SearchVector, SearchQuery,SearchRank,
 
 Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='django')
 
+from django.shortcuts import render
+from .models import Post
+from django.views import generic 
+# Create your views here.
 
+class PostList(generic.ListView):
+  queryset = Post.objects.filter(status=1).order_by('-created')
+  template_name = 'latest_posts.html'
+
+
+class DetailView(generic.DetailView):
+  model = Post
+  template_name = 'single_post.html'
 
 """ class PostListView(ListView):
     queryset = Post.published.all()
@@ -22,7 +34,7 @@ Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='d
     paginate_by = 2
     template_name = 'Blog/blog.html' """
     
- 
+"""  
 def post_list(request, tag_slug=None, category_slug=None):
     
     ''' category = None
@@ -56,7 +68,7 @@ def post_list(request, tag_slug=None, category_slug=None):
     
     return render(request,
                   'blog/latest_posts.html',
-                  context)
+                  context) """
    
     
 def post_detail(request, year, month, day, slug):
