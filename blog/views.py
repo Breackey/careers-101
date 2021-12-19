@@ -20,12 +20,12 @@ from django.views import generic
 
 class PostList(generic.ListView):
   queryset = Post.objects.filter(status=1).order_by('-created')
-  template_name = 'latest_posts.html'
+  template_name = 'blog/latest_posts.html'
 
 
 class DetailView(generic.DetailView):
   model = Post
-  template_name = 'single_post.html'
+  template_name = 'blog/single_post.html'
 
 """ class PostListView(ListView):
     queryset = Post.published.all()
