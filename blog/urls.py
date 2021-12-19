@@ -18,4 +18,5 @@ path('search/', views.post_search, name='post_search'),
 urlpatterns = [
   path('', views.PostList.as_view(), name="post_list"),
   path('<slug:slug>/', views.PostList.as_view(), name="post_detail"),
+  path('search/', views.post_search, name='post_search'),
 ]
