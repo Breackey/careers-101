@@ -30,14 +30,18 @@
 						<!-- Left part start -->
 						<div class="col-lg-8 col-md-7 col-sm-12">
 	{% for post in posts %} 
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-text text-muted h6">{{ post.author }} | {{ post.created}} </p>
-          <p class="card-text">{{post.content|slice:":200"}}</p>
-          <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
-        </div>
-      </div>
+	<div class="blog-post blog-lg blog-style-1">
+		<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a href="{{ post.get_absolute_url }}"><img src="images/blog/default/thum2.jpg" alt=""></a> </div>
+		<div class="dez-info">
+			 <div class="dez-post-meta">
+				<ul class="d-flex align-items-center">
+					<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}/li>
+					<li class="post-author"><i class="fa fa-user"></i>By <a href="#">{{ post.author }}</a> </li>
+					<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">5k</a> </li>
+				</ul>
+			</div>
+			<div class="dez-post-title ">
+				<h4 class="post-title font-24"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
       {% endfor %}
     </div>
   
