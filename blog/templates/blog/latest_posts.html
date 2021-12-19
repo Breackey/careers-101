@@ -2,23 +2,33 @@
 {% load static %}
 
 {% block content %}
-<header class="masthead">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class=" col-md-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <h3 class=" site-heading my-4 mt-3 text-black"> Welcome to My Blog ✍️ </h3>
-          <p class="text-dark">Django is Awesome ✨✨✨ </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<div class="container">
-  <div class="row">
-    <!-- Blog Entries Column -->
-    <div class="col-md-8 mt-3 left">
+<body id="bg">
+	<div class="page-wraper">
+	
+		<!-- Content -->
+		<div class="page-content bg-white">
+			<!-- inner page banner -->
+			<div class="dez-bnr-inr overlay-black-middle" style="background-image:url(images/banner/bnr1.jpg);">
+				<div class="container">
+					<div class="dez-bnr-inr-entry">
+						<h1 class="text-white">Blog</h1>
+						<!-- Breadcrumb row -->
+						<div class="breadcrumb-row">
+							<ul class="list-inline">
+								<li><a href="#">Home</a></li>
+								<li>Blog</li>
+							</ul>
+						</div>
+						<!-- Breadcrumb row END -->
+					</div>
+				</div>
+			</div>
+			<!-- inner page banner END -->
+			<div class="content-area">
+				<div class="container">
+					<div class="row">
+						<!-- Left part start -->
+						<div class="col-lg-8 col-md-7 col-sm-12">
 	{% for post in posts %} 
       <div class="card mb-4">
         <div class="card-body">
