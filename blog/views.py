@@ -17,7 +17,7 @@ Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='d
 
 class PostListView(ListView):
     queryset = Post.objects.filter(status=1).order_by("-created")
-    context_object_name = 'posts_list'
+    context_object_name = 'post_list'
     paginate_by = 2
     template_name = 'blog/latest_posts.html'
     
