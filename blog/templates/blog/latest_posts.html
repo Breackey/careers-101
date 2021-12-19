@@ -1,174 +1,58 @@
 {% extends "users/layout.html" %}
-{% load blog_tags %}
 {% load static %}
-{% load bootstrap4 %}
-
-{% block title %}Blog{% endblock %}
 
 {% block content %}
-<body id="bg">
-<div class="page-wraper">
 
-    <!-- Content -->
-    <div class="page-content bg-white">
-        <!-- inner page banner -->
-        <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(images/banner/bnr1.jpg);">
-            <div class="container">
-                <div class="dez-bnr-inr-entry">
-                    <h1 class="text-white">Blog</h1>
-					<!-- Breadcrumb row -->
-					<div class="breadcrumb-row">
-						<ul class="list-inline">
-							<li><a href="#">Home</a></li>
-							<li>Blog</li>
-						</ul>
-					</div>
-					<!-- Breadcrumb row END -->
-                </div>
-            </div>
-        </div>
-        <!-- inner page banner END -->
-        <div class="content-area">
-            <div class="container">
-                <div class="row">
-                    <!-- Left part start -->
-                    <div class="col-lg-8 col-md-7 col-sm-12">
-                        <!-- Blog large img -->
-						{% if tag %}
-						<h2>Posts tagged with "{{ tag.name }}"</h2>
-					{% endif %}
 
-					   
-					{% for post in posts %}   
-						<div class="blog-post blog-lg blog-style-1">
-							<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a href="{{ post.get_absolute_url }}"><img src="images/blog/default/thum2.jpg" alt=""></a> </div>
-							<div class="dez-info">
-								 <div class="dez-post-meta">
-									<ul class="d-flex align-items-center">
-										<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}/li>
-										<li class="post-author"><i class="fa fa-user"></i>By <a href="#">{{ post.author }}</a> </li>
-										<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">5k</a> </li>
-									</ul>
-								</div>
-								<div class="dez-post-title ">
-									<h4 class="post-title font-24"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
-									<p class="tags">
-										Tags:
-										{% for tag in post.tags.all %}
-										<a href="{% url 'blog:post_list_by_tag' tag.slug %}">
-										{{ tag.name }}
-										</a>
-										{% comment %} {% if not forloop.last %}, {% endif %} {% endcomment %}
-										{% endfor %}
-										</p>
-									
-								</div>
-								<div class="dez-post-text">
-									<p>{{ post.content|markdown|truncatewords_html:30 }}</p>
-								</div>
-								<div class="dez-post-readmore blog-share"> 
-									<a href="{{ post.get_absolute_url }}" title="READ MORE" rel="bookmark" class="site-button outline">READ MORE</a>
-								</div>
-							</div>
-						</div>
-						{% endfor %}
-
-					 
-						<!-- Blog large img END -->
-                        <div class="pagination-bx clearfix text-center">
-
-							{% if is_paginated %}
-							<nav aria-label="Page navigation conatiner"></nav>
-							<ul class="pagination justify-content-center">
-								{% if page_obj.has_previous %}
-									<li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-								{% endif %}
-								{% if page_obj.has_next %}
-									<li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-					
-								{% endif %}
- 
-						</div>
-                        <!-- Pagination END -->
-						{% endif %}
+    <header class="masthead">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h3 class=" site-heading my-4 mt-3 text-white"> Welcome to my awesome Blog </h3>
+                        <p class="text-light">We Love Django As much as you do &nbsp
+                        </p>
                     </div>
-                    <!-- Left part END -->
-                    <!-- Side bar start -->
-                    <div class="col-lg-4 col-md-5 col-sm-12 sticky-top">
-                        <aside  class="side-bar">
-                            <div class="widget">
-                                <h6 class="widget-title style-1">Search</h6>
-                                <div class="search-bx style-1">
- 
-                                    <form role="search" id="search-form">
-                                       <a class="site-button" style= "color:white;" href="{% url "blog:post_search" %}">Click to Search Posts</a>
-                                    </form>
-                                </div>
-                            </div>
-							<div class="widget widget-popular-posts">
-								<h4 class="widget-title">All posts ({% total_posts %})</h4>
-                            <div class="widget recent-posts-entry">
-                                <h6 class="widget-title style-1">Recent Posts</h6>
-                                <div class="widget-post-bx">
-                                    <div class="widget-post clearfix">
-										{% show_latest_posts 3 %}
-                                        <div class="dez-post-media"><a href="{{ post.get_absolute_url }}"> <img src="static/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
-                                        <div class="dez-post-info">
-                                            <div class="dez-post-header">
-                                                <h6 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h6>
-                                            </div>
-											<div class="dez-post-meta">
-												<ul class="d-flex align-items-center">
-													<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
-													<li class="post-comment"><a href="#"><i class="fa fa-comments-o"></i>5k</a> </li>
-												</ul>
-											</div>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                            </div>
-							
-							<div class="widget">
-								<h4 class="widget-title">Most commented posts</h4>
-								{% get_most_commented_posts as most_commented_posts %}
-							<ul class="posts-list">
-								{% for post in most_commented_posts %}
-							<li>
-							<div class="widget-thumb">
-							<a href="#"><img src="static/img/blog/thumb1.jpg" alt="" /></a>
-							 </div>
-							<div class="widget-content">
-								<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-							<span><i class="icon-calendar"></i>{{ post.publish }}</span>
-							</div>
-							<div class="clearfix"></div>
-							</li>
-							{% endfor %}
-
-
-						 
-
-							<div class="widget widget_archive">
-                                <h6 class="widget-title style-1">All Categories ({{count}})</h6>
-                                <ul>
-									{% for category in category_list %}
-                                    <li><a href="#">{{category}} <span class="category-counter">({{category.total_products}})</span>
-										</a>
-									</li>
-									{% endfor %}
-                                </ul>
-                            </div>
-							
-						 
-                        </aside>
-                    </div>
-                    <!-- Side bar END -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Content END-->
-	<!-- Footer -->
-    
-{% endblock  %}
+    </header>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8 mt-3 left">
+                {% for post in post_list %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ post.title }}</h2>
+                            <p class="card-text text-muted h6">{{ post.author }} | {{ post.created}}  </p>
+
+                            <p class="card-text">{{post.content|safe|slice:":200" }}</p>
+                            <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+          
+    </div>
+    {% if is_paginated %}
+        <nav aria-label="Page navigation conatiner"></nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+        </nav>
+        </div>
+    {% endif %}
+{% endblock content %}
