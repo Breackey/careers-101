@@ -50,7 +50,7 @@ class PostListView(ListView):
                   context) """
    
     
-def post_detail(request, year, month, day, slug):
+def post_detail(request, year, month, day, slug, post):
     post = get_object_or_404(Post, slug=slug,
                              status='published',
                              publish__year=year,
