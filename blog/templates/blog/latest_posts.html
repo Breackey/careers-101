@@ -1,5 +1,5 @@
 {% extends "users/layout.html" %}
-{% load blog_tags %}
+{% comment %} {% load blog_tags %} {% endcomment %}
 {% load static %}
 {% load bootstrap4 %}
 
@@ -148,21 +148,6 @@
 							</li>
 							{% endfor %}
 
-
-						 
-
-							<div class="widget widget_archive">
-                                <h6 class="widget-title style-1">All Categories ({{count}})</h6>
-                                <ul>
-									{% for category in category_list %}
-                                    <li><a href="#">{{category}} <span class="category-counter">({{category.total_products}})</span>
-										</a>
-									</li>
-									{% endfor %}
-                                </ul>
-                            </div>
-							
-						 
                         </aside>
                     </div>
                     <!-- Side bar END -->

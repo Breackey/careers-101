@@ -80,7 +80,7 @@ def post_detail(request, year, month, day, slug):
                                             .order_by('-same_tags','-publish')[:4]
 
     return render(request,
-                  'blog/single_post.html',
+                  'blog/post_detail.html',
                   {'post': post,
                    'comments': comments,
                    'new_comment': new_comment,
