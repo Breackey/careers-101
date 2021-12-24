@@ -50,7 +50,7 @@ class PostListView(ListView):
                   context) """
    
     
-def post_detail(request, year, month, day, slug, post):
+def post_detail(request,slug, year, month, day):
     post = get_object_or_404(Post, slug=slug,
                              status='published',
                              publish__year=year,
@@ -82,7 +82,6 @@ def post_detail(request, year, month, day, slug, post):
     return render(request,
                   'blog/post_detail.html',
                   {'post': post,
-                  'slug':slug,
                    'comments': comments,
                    'new_comment': new_comment,
                    'comment_form': comment_form,
