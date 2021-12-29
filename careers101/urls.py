@@ -22,7 +22,6 @@ urlpatterns = [
     path('blog/', include('blog.urls'), name='blog'),
     path('newsletter/', include('newsletter.urls')),
     path('control-panel/', include('control_panel.urls')),
-    path('tinymce/', include('tinymce.urls')),
     path("summernote/", include("django_summernote.urls")),
 ]
 

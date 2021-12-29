@@ -15,14 +15,14 @@ Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='d
 
 
 
-class PostListView(ListView):
+""" class PostListView(ListView):
     queryset = Post.objects.filter(status=1).order_by("-created")
     context_object_name = 'post_list'
     paginate_by = 2
-    template_name = 'blog/latest_posts.html'
+    template_name = 'blog/latest_posts.html' """
     
  
-""" def post_list(request, tag_slug=None, category_slug=None):
+def post_list(request, tag_slug=None, category_slug=None):
     
        
     object_list = Post.published.all()
@@ -47,7 +47,7 @@ class PostListView(ListView):
     
     return render(request,
                   'blog/latest_posts.html',
-                  context) """
+                  context)
    
     
 def post_detail(request,slug, year, month, day):

@@ -38,10 +38,6 @@ django-rest-auth==0.9.5
 
 django-taggit==1.5.1
 
-django-tinymce==3.3.0
-
-django-tinymce4-lite==1.8.0
-
 djangorestframework==3.12.4
 
 gunicorn==20.1.0

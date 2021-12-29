@@ -34,9 +34,9 @@
                     <!-- Left part start -->
                     <div class="col-lg-8 col-md-7 col-sm-12">
                         <!-- Blog large img -->
-						{% comment %} {% if tag %}
+						 {% if tag %}
 						<h2>Posts tagged with "{{ tag.name }}"</h2>
-					{% endif %} {% endcomment %}
+					{% endif %} 
 
 					   
 					{% for post in post_list %}   
@@ -52,7 +52,7 @@
 								</div>
 								<div class="dez-post-title ">
 									<h4 class="post-title font-24"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
-								{% comment %} 	<p class="tags">
+									<p class="tags">
 										Tags:
 										{% for tag in post.tags.all %}
 										<a href="{% url 'blog:post_list_by_tag' tag.slug %}">
@@ -60,7 +60,7 @@
 										</a>
 										{% if not forloop.last %}, {% endif %} 
 										{% endfor %}
-										</p> {% endcomment %}
+										</p>
 									
 								</div>
 								<div class="dez-post-text">
