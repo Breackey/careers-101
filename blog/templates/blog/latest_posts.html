@@ -36,10 +36,10 @@
                         <!-- Blog large img -->
 						 {% if tag %}
 						<h2>Posts tagged with "{{ tag.name }}"</h2>
-					{% endif %} 
+						{% endif %} 
 
 					   
-					{% for post in post_list %}   
+						{% for post in post_list %}   
 						<div class="blog-post blog-lg blog-style-1">
 							<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a href="{{ post.get_absolute_url }}"><img src="images/blog/default/thum2.jpg" alt=""></a> </div>
 							<div class="dez-info">
@@ -72,8 +72,9 @@
 							</div>
 						</div>
 						{% endfor %}
+					</div>
 
-					 
+				</div>
 						<!-- Blog large img END -->
                         <div class="pagination-bx clearfix text-center">
 
