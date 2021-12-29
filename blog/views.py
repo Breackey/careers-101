@@ -22,7 +22,7 @@ Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='d
     template_name = 'blog/latest_posts.html' """
     
  
-def post_list(request, tag_slug=None, category_slug=None):
+def post_list(request, tag_slug=None):
     
        
     object_list = Post.published.all()
