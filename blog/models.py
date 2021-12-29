@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.urls import reverse
-#from taggit.managers import TaggableManager
+from taggit.managers import TaggableManager
 from django.conf import settings
 
 
@@ -29,7 +29,7 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     objects = models.Manager() # The default manager.
     published = PublishedManager() # Our custom manager.
-    #tags = TaggableManager()
+    tags = TaggableManager()
 
     def get_absolute_url(self):
         return reverse('blog:post_detail',
