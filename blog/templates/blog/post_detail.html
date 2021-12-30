@@ -51,7 +51,7 @@
                             </div>
                             <div class="dez-post-media dez-img-effect zoom-slow m-t20"> <a href="#"><img src="images/blog/default/thum1.jpg" alt=""></a> </div>
                             <div class="dez-post-text">
-                                {{ post.body|markdown }}
+                                {{ post.content|markdown }}
                             </div>
                             <div class="dez-post-tags clear">
                                 <div class="post-tags">
@@ -191,7 +191,7 @@
                                 <h6 class="widget-title style-1">Recent Posts</h6>
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
-										{% for post in recent_posts %}
+										{% show_latest_posts 3 %}
                                         <div class="dez-post-media"> <img src="images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
                                             <div class="dez-post-info">
                                                 <div class="dez-post-header">
@@ -205,7 +205,6 @@
                                                     </div>
                                             </div>
                                         </div>
-                                        {% endfor %}
                                     <div class="widget">
                                         <h4 class="widget-title">Most commented posts</h4>
                                         {% get_most_commented_posts as most_commented_posts %}
