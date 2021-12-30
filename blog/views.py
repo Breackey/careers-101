@@ -25,12 +25,12 @@ Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='d
 def post_list(request, tag_slug=None):
     
        
-    object_list = Post.published.all()
+    posts = Post.published.all()
     tag = None
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
-        object_list = object_list.filter(tags__in=[tag])
-    paginator = Paginator(object_list, 2) # 3 posts in each page
+        posts = posts.filter(tags__in=[tag])
+    paginator = Paginator(posts, 2) # 3 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
@@ -73,7 +73,7 @@ def post_detail(request,slug, year, month, day):
         comment_form = CommentForm()
         
     # List of similar posts
-    post_tags_ids = post.tags.values_list('id', flat=True)
+    post_tags_ids = Post.tags.values_list('id', flat=True)
     similar_posts = Post.published.filter(tags__in=post_tags_ids)\
                                             .exclude(id=post.id)
     similar_posts = similar_posts.annotate(same_tags=Count('tags'))\
