@@ -107,18 +107,6 @@
                                                         <p>{{ comment.body|linebreaks }}</p>
                                                         <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
                                                     </div>
-                                                    <ol class="children">
-                                                        <li class="comment odd parent">
-                                                            <div class="comment-body">
-                                                                <div class="comment-author vcard"> <img  class="avatar photo" src="images/testimonials/pic3.jpg" alt=""> <cite class="fn">Stacy poe</cite> <span class="says">says:</span> </div>
-                                                                <div class="comment-meta"> <a href="#">October 6, 2015 at 7:15 am</a> </div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae neque vitae sapien malesuada aliquet. 
-                                                                    In viverra dictum justo in vehicula. Fusce et massa eu ante ornare molestie. Sed vestibulum sem felis, 
-                                                                    ac elementum ligula blandit ac.</p>
-                                                                <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
-                                                            </div>
-                                                        </li>
-                                                    </ol>
                                                     <!-- list END -->
                                                 </li>
                                             </ol>
@@ -188,7 +176,7 @@
                                 </div>
                                 <div class="widget-content">
                                     <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                                <span><i class="icon-calendar"></i>June 21, 2018</span>
+                                <span><i class="icon-calendar"></i>{{ post.publish }}</span>
                                 </div>
                                 <div class="clearfix"></div>
                                 </li>
@@ -203,21 +191,21 @@
                                 <h6 class="widget-title style-1">Recent Posts</h6>
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
-										{% show_latest_posts 3 %}
+										{% for post in recent_posts %}
                                         <div class="dez-post-media"> <img src="images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
-                                        <div class="dez-post-info">
-                                            <div class="dez-post-header">
-                                                <h6 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h6>
+                                            <div class="dez-post-info">
+                                                <div class="dez-post-header">
+                                                    <h6 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h6>
+                                                </div>
+                                                    <div class="dez-post-meta">
+                                                        <ul class="d-flex align-items-center">
+                                                            <li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
+                                                            <li class="post-comment"><a href="#"><i class="fa fa-comments-o"></i>5k</a> </li>
+                                                        </ul>
+                                                    </div>
                                             </div>
-											<div class="dez-post-meta">
-												<ul class="d-flex align-items-center">
-													<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
-													<li class="post-comment"><a href="#"><i class="fa fa-comments-o"></i>5k</a> </li>
-												</ul>
-											</div>
                                         </div>
-                                    </div>
-
+                                        {% endfor %}
                                     <div class="widget">
                                         <h4 class="widget-title">Most commented posts</h4>
                                         {% get_most_commented_posts as most_commented_posts %}
