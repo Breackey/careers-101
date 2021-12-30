@@ -41,10 +41,10 @@ def post_list(request, tag_slug=None):
     # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
     
-    """ all_posts = list(Post.objects.all())
-    recent_posts = random.sample(all_posts,3) """
+    all_posts = list(Post.objects.all())
+    recent_posts = random.sample(all_posts,3)
     
-    context = {'page': page,'posts': posts,'tag': tag, 'post_list': 'active'}   
+    context = {'page': page,'posts': posts,'tag': tag,'recent_posts':recent_posts, 'post_list': 'active'}   
     
     #context = {'page': page,'posts': posts,'tag': tag,'product_list' : productlist , 'category_list' : categorylist , 'count':Category.objects.count()}   
     
