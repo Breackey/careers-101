@@ -8,7 +8,7 @@ from taggit.models import Tag
 from django.db.models import Count
 from django.core.mail import send_mail
 from django.contrib.postgres.search import SearchVector, SearchQuery,SearchRank, TrigramSimilarity
-
+import random
  
 
 Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='django')
@@ -29,7 +29,7 @@ def post_list(request, tag_slug=None):
     tag = None
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
-        posts = posts.filter(tags__in=[tag])
+        posts = Post.objects.filter(tags__in=[tag])
     paginator = Paginator(posts, 2) # 3 posts in each page
     page = request.GET.get('page')
     try:
@@ -40,6 +40,9 @@ def post_list(request, tag_slug=None):
     except EmptyPage:
     # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
+    
+    """ all_posts = list(Post.objects.all())
+    recent_posts = random.sample(all_posts,3) """
     
     context = {'page': page,'posts': posts,'tag': tag, 'post_list': 'active'}   
     
