@@ -136,7 +136,10 @@
 											<div class="dez-post-meta">
 												<ul class="d-flex align-items-center">
 													<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
-													<li class="post-comment"><a href="#"><i class="fa fa-comments-o"></i>5k</a> </li>
+													{% with comments.count as total_comments %}
+														<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">
+																{{ total_comments }} Comment{{ total_comments|pluralize }} </a></li>
+														{% endwith %} 
 												</ul>
 											</div>
                                         </div>

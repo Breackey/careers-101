@@ -156,11 +156,9 @@
                                 <h6 class="widget-title style-1">Search</h6>
                                 <div class="search-bx style-1">
                                     <form role="search" method="post">
-                                        <div class="input-group">
-                                            <input name="text" class="form-control" placeholder="Enter your keywords..." type="text">
-                                            <span class="input-group-btn">
-												<button type="submit" class="fa fa-search text-primary"></button>
-                                            </span> 
+                                        
+												<a class="site-button" style= "color:white;" href="{% url "blog:post_search" %}">Click to Search Posts</a>
+                                           
 										</div>
                                     </form>
                                 </div>
@@ -172,6 +170,7 @@
                                     {% for post in similar_posts %}
                                 <li>
                                 <div class="widget-thumb">
+                                
                                 <a href="#"><img src="static/img/blog/thumb1.jpg" alt="" /></a>
                                 </div>
                                 <div class="widget-content">
@@ -192,19 +191,23 @@
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
 										{% show_latest_posts 3 %}
-                                        <div class="dez-post-media"> <img src="images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
-                                            <div class="dez-post-info">
-                                                <div class="dez-post-header">
-                                                    <h6 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h6>
-                                                </div>
-                                                    <div class="dez-post-meta">
-                                                        <ul class="d-flex align-items-center">
-                                                            <li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
-                                                            <li class="post-comment"><a href="#"><i class="fa fa-comments-o"></i>5k</a> </li>
-                                                        </ul>
-                                                    </div>
+                                        <div class="dez-post-info">
+                                            <div class="dez-post-header">
+                                                <h6 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h6>
                                             </div>
+											<div class="dez-post-meta">
+												<ul class="d-flex align-items-center">
+													<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
+													
+                                                        {% with comments.count as total_comments %}
+                                                        <li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">
+                                                                {{ total_comments }} Comment{{ total_comments|pluralize }} </a></li>
+                                                        {% endwith %} </a> </li>
+												</ul>
+											</div>
                                         </div>
+                                    </div>
+
                                     <div class="widget">
                                         <h4 class="widget-title">Most commented posts</h4>
                                         {% get_most_commented_posts as most_commented_posts %}
@@ -238,19 +241,7 @@
                                 </ul>
                             </div>
 							
-							<div class="widget widget-newslatter">
-                                <h6 class="widget-title style-1">Newsletter</h6>
-                                <div class="news-box">
-									<p>Enter your e-mail and subscribe to our newsletter.</p>
-                                    <form class="dzSubscribe" action="http://job-board.w3itexperts.com/xhtml/script/mailchamp.php" method="post">
-										<div class="dzSubscribeMsg"></div>
-                                        <div class="input-group">
-                                            <input name="dzEmail" required="required" type="email" class="form-control" placeholder="Your Email"/>
-											<button name="submit" value="Submit" type="submit" class="site-button btn-block">Subscribe Now</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+							 
                         </aside>
                     </div>
                     <!-- Side bar END -->
