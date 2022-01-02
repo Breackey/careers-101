@@ -47,7 +47,11 @@
 									<ul class="d-flex align-items-center">
 										<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}/li>
 										<li class="post-author"><i class="fa fa-user"></i>By <a href="#">{{ post.author }}</a> </li>
-										<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">5k</a> </li>
+										<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">
+											{% with comments.count as total_comments %}
+											<h2 class="comments-title">{{ total_comments }} Comment{{ total_comments|pluralize }}</h2>
+												{% endwith %}
+										</a> </li>
 									</ul>
 								</div>
 								<div class="dez-post-title ">
