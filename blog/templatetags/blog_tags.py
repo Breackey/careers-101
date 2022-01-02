@@ -22,7 +22,8 @@ def show_latest_posts(count=5):
 
 @register.simple_tag
 def show_latest_posts(count=5):
-    return Post.published.order_by('-publish')[:count]
+    return Post.published.all().order_by('-publish')[:count]
+    
 
 
 @register.simple_tag
