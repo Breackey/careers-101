@@ -49,7 +49,7 @@ def post_list(request, tag_slug=None):
     #context = {'page': page,'posts': posts,'tag': tag,'product_list' : productlist , 'category_list' : categorylist , 'count':Category.objects.count()}   
     
     return render(request,
-                  'blog/latest_posts.html',
+                  'blog/blog.html',
                   context)
    
     
