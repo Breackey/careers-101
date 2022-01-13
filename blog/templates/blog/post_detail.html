@@ -168,10 +168,6 @@
                                 <ul class="posts-list">
                                     {% for post in similar_posts %}
                                 <li>
-                                <div class="widget-thumb">
-                                
-                                <a href="#"><img src="static/img/blog/thumb1.jpg" alt="" /></a>
-                                </div>
                                 <div class="widget-content">
                                     <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                                 <span><i class="icon-calendar"></i>{{ post.publish }}</span>

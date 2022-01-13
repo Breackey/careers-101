@@ -47,11 +47,10 @@
 									<ul class="d-flex align-items-center">
 										<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}/li>
 										<li class="post-author"><i class="fa fa-user"></i>By <a href="#">{{ post.author }}</a> </li>
+										{% with comments.count as total_comments %}
 										<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">
-											{% with comments.count as total_comments %}
-											<h2 class="comments-title">{{ total_comments }} Comment{{ total_comments|pluralize }}</h2>
-												{% endwith %}
-										</a> </li>
+												{{ total_comments }} Comment{{ total_comments|pluralize }} </a></li>
+										{% endwith %} 
 									</ul>
 								</div>
 								<div class="dez-post-title ">
@@ -132,7 +131,7 @@
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
 										{% show_latest_posts 3 %}
-                                        <div class="dez-post-media"><a href="{{ post.get_absolute_url }}"> <img src="static/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
+                                        <div class="dez-post-media"><a href="{{ post.get_absolute_url }}"> </div>
                                         <div class="dez-post-info">
                                             <div class="dez-post-header">
                                                 <h6 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h6>
