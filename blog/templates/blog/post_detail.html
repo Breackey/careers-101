@@ -152,17 +152,7 @@
                     <!-- Side bar start -->
                     <div class="col-lg-4 col-md-5 sticky-top">
                         <aside  class="side-bar">
-                            <div class="widget">
-                                <h6 class="widget-title style-1">Search</h6>
-                                <div class="search-bx style-1">
-                                    <form role="search" method="post">
-                                        
-												<a class="site-button" style= "color:white;" href="{% url "blog:post_search" %}">Click to Search Posts</a>
-                                           
-                                    </form>
-                                </div>
-                            </div>
-
+                             
                             <div class="widget widget-popular-posts">
                                 <h4 class="widget-title">Similar posts</h4>
                                 <ul class="posts-list">
@@ -219,7 +209,11 @@
 							<div class="widget widget_archive">
                                 <h6 class="widget-title style-1">Categories List</h6>
                                 <ul>
-                                    <li><a href="#">aciform</a></li>
+                                    <li><a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                                        {% for tag in tag %}
+										{{ tag.name }}
+										{% endfor %}</a>
+                                    </li>
                                     <li><a href="#">championship</a></li>
                                     <li><a href="#">chastening</a></li>
                                     <li><a href="#">clerkship</a></li>
