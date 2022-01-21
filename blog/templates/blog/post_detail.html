@@ -209,12 +209,8 @@
 							<div class="widget widget_archive">
                                 <h6 class="widget-title style-1">Categories List</h6>
                                 <ul>
-                                    <li><a href="{% url 'blog:post_list_by_tag' tag.slug %}">
-                                        {% for tag in tag %}
-										{{ tag.name }}
-										{% endfor %}</a>
-                                    </li>
-                                    <li><a href="#">championship</a></li>
+                                    {% for obj in object_list %}
+                                    <li><a href="{% url 'blog:category_detail' slug=obj.category.slug %}">{{obj.category}}</a></li>
                                     <li><a href="#">chastening</a></li>
                                     <li><a href="#">clerkship</a></li>
                                     <li><a href="#">disinclination</a></li>
