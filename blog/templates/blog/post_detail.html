@@ -152,8 +152,12 @@
                     <!-- Side bar start -->
                     <div class="col-lg-4 col-md-5 sticky-top">
                         <aside  class="side-bar">
+<<<<<<< HEAD
                            
 
+=======
+                             
+>>>>>>> a503382b0ef3adc1b6dc6873ecf9faed43b019a6
                             <div class="widget widget-popular-posts">
                                 <h4 class="widget-title">Similar posts</h4>
                                 <ul class="posts-list">
@@ -210,8 +214,8 @@
 							<div class="widget widget_archive">
                                 <h6 class="widget-title style-1">Categories List</h6>
                                 <ul>
-                                    <li><a href="#">aciform</a></li>
-                                    <li><a href="#">championship</a></li>
+                                    {% for obj in object_list %}
+                                    <li><a href="{% url 'blog:category_detail' slug=obj.category.slug %}">{{obj.category}}</a></li>
                                     <li><a href="#">chastening</a></li>
                                     <li><a href="#">clerkship</a></li>
                                     <li><a href="#">disinclination</a></li>
