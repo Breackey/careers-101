@@ -13,18 +13,18 @@ class PublishedManager(models.Manager):
                     .filter(status='published')
 
 class Category(models.Model):
-    name = models.CharField(max_length=255, verbose_name="Category",default='Career Development')
-    slug = models.SlugField(max_length=250, unique=True)
+    name = models.CharField(max_length=255)
+    
 
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
         ordering = ['name']
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
-
+    def get_absolute_url(self):
+        return reverse('home')
+     
+        
     def __str__(self):
         return self.name
 
@@ -34,7 +34,7 @@ class Post(models.Model):
     ('published', 'Published'),
     )
     title = models.CharField(max_length=250)
-    category = models.ForeignKey(Category,on_delete=models.CASCADE, verbose_name="Category")
+    category = models.CharField(max_length=250, default='Career Development')
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()
