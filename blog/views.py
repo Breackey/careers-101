@@ -43,7 +43,7 @@ def post_list(request, tag_slug=None):
     # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
     
-    all_posts = list(Post.objects.all())
+    all_posts = list(Post.published.all())
     recent_posts = random.sample(all_posts,3)
     
     context = {'page': page,'posts': posts,'tag': tag,'recent_posts':recent_posts, 'post_list': 'active', 'categories': categories}   
