@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0012_alter_user_first_name_max_length'),
-        ('taggit', '0004_alter_taggeditem_content_type_alter_taggeditem_tag'),
+        #('taggit', '0004_alter_taggeditem_content_type_alter_taggeditem_tag'),
     ]
 
     operations = [
