@@ -12,21 +12,6 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset()\
                     .filter(status='published')
 
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-    
-
-    class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
-        ordering = ['name']
-
-    def get_absolute_url(self):
-        return reverse('home')
-     
-        
-    def __str__(self):
-        return self.name
 
 class Post(models.Model):
     STATUS_CHOICES = (
@@ -34,7 +19,6 @@ class Post(models.Model):
     ('published', 'Published'),
     )
     title = models.CharField(max_length=250)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()

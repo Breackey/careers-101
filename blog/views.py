@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post
 from django.core.paginator import Paginator, EmptyPage,PageNotAnInteger
 from django.views.generic import ListView
-from .models import Post, Comment, Category
+from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm, SearchForm
 from taggit.models import Tag
 from django.db.models import Count
@@ -27,7 +27,6 @@ def post_list(request, tag_slug=None):
        
     posts = Post.published.all()
     tag = None
-    categories = Category.objects.all()
 
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
@@ -46,7 +45,7 @@ def post_list(request, tag_slug=None):
     all_posts = list(Post.published.all())
     recent_posts = random.sample(all_posts,3)
     
-    context = {'page': page,'posts': posts,'tag': tag,'recent_posts':recent_posts, 'post_list': 'active', 'categories': categories}   
+    context = {'page': page,'posts': posts,'tag': tag,'recent_posts':recent_posts, 'post_list': 'active'}   
     
     #context = {'page': page,'posts': posts,'tag': tag,'product_list' : productlist , 'category_list' : categorylist , 'count':Category.objects.count()}   
     
@@ -56,7 +55,6 @@ def post_list(request, tag_slug=None):
    
     
 def post_detail(request,slug, year, month, day):
-    categories = Category.objects.all()
     post = get_object_or_404(Post, slug=slug,
                              status='published',
                              publish__year=year,
@@ -140,12 +138,3 @@ def post_search(request):
                         'query': query,
                         'results': results})
 
-
-def category_detail(request, slug):
-
-    category = get_object_or_404(Category, slug=slug)
-    post = Post.objects.filter(category=category)
-    context = {'category': category, 
-                'post':post}
-
-    return render(request, 'blog/category_detail.html', context)
