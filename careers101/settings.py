@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-a@twmvhl_8l$a50%cq%yf=(%80k0iych3!^7u9l0n)82t0c-cc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'careers101.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'careers101.herokuapp.com','206.81.8.116']
 
 
 # Application definition
@@ -260,5 +260,3 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = None
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
-
-ALLOWED_HOSTS = ['careers101.herokuapp.com']
