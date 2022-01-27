@@ -90,7 +90,7 @@ def post_detail(request,slug, year, month, day):
                    'new_comment': new_comment,
                    'comment_form': comment_form,
                    'similar_posts': similar_posts,
-                   'categories': categories})
+                  })
     
 
 def post_share(request, post_id):
