@@ -168,12 +168,12 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_URL = '/static/'
+""" STATIC_URL = '/static/'
 STATIC_ROOT =  os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+    os.path.join(BASE_DIR, "staticfiles"),
+] """
 #  Add configuration for static files storage using whitenoise
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
@@ -182,7 +182,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, "media" )
 
 
-""" PROJECT_ROOT   =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT   =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/' 
 
@@ -190,7 +190,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
-"""
+
 
 
 #AUTH_USER_MODEL = "account.user"
