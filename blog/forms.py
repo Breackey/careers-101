@@ -12,7 +12,7 @@ class EmailPostForm(forms.Form):
                                 widget=forms.Textarea)
     
 
-from .models import Comment
+from .models import Comment, Post
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
