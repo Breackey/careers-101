@@ -34,7 +34,7 @@ class Post(models.Model):
     ('published', 'Published'),
     )
     title = models.CharField(max_length=250)
-    category = models.CharField(max_length=250, default='Career Development')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()
