@@ -65,7 +65,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -104,17 +104,25 @@ WSGI_APPLICATION = 'careers101.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'careers101', 
-        'USER': 'postgres', 
-        'PASSWORD': 'Leblanc94',
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'yourdatabasename.db'),
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'careers101db', 
+            'USER': 'breackey', 
+            'PASSWORD': 'Leblanc94*',
+            'HOST': '127.0.0.1', 
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
@@ -160,30 +168,30 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-""" STATIC_URL = '/static/'
-STATIC_ROOT =  os.path.join(BASE_DIR, "static" , "static_root")
+STATIC_URL = '/static/'
+STATIC_ROOT =  os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-] """
+]
+#  Add configuration for static files storage using whitenoise
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT =  os.path.join(BASE_DIR, "media" )
 
-PROJECT_ROOT   =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+""" PROJECT_ROOT   =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' 
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+"""
 
-#  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
-
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT =  os.path.join(BASE_DIR, "media" )
 
 #AUTH_USER_MODEL = "account.user"
 
