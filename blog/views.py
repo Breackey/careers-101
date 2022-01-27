@@ -8,7 +8,7 @@ from taggit.models import Tag
 from django.db.models import Count
 from django.core.mail import send_mail
 from django.contrib.postgres.search import SearchVector, SearchQuery,SearchRank, TrigramSimilarity
-import random
+
  
 
 Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='django')
@@ -16,22 +16,30 @@ Post.objects.annotate(search=SearchVector('title', 'content'),).filter(search='d
 
 
 """ class PostListView(ListView):
-    queryset = Post.objects.filter(status=1).order_by("-created")
-    context_object_name = 'post_list'
+    queryset = Post.published.all()
+    
+    context_object_name = 'posts'
     paginate_by = 2
-    template_name = 'blog/latest_posts.html' """
-
-
+    template_name = 'Blog/blog.html' """
+    
  
-def post_list(request, tag_slug=None):
-       
-    posts = Post.published.all()
-    tag = None
+def post_list(request, tag_slug=None, category_slug=None):
+    
+    ''' category = None
+    
+    productlist = Product.objects.all()
+    categorylist = Category.objects.annotate(total_products=Count('product'))
 
+    if category_slug :
+        category = get_object_or_404(Category ,slug=category_slug)
+        productlist = productlist.filter(category=category) '''
+       
+    object_list = Post.published.all()
+    tag = None
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
-        posts = Post.objects.filter(tags__in=[tag])
-    paginator = Paginator(posts, 2) # 3 posts in each page
+        object_list = object_list.filter(tags__in=[tag])
+    paginator = Paginator(object_list, 2) # 3 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
@@ -42,10 +50,7 @@ def post_list(request, tag_slug=None):
     # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
     
-    all_posts = list(Post.published.all())
-    recent_posts = random.sample(all_posts,3)
-    
-    context = {'page': page,'posts': posts,'tag': tag,'recent_posts':recent_posts, 'post_list': 'active'}   
+    context = {'page': page,'posts': posts,'tag': tag, 'post_list': 'active'}   
     
     #context = {'page': page,'posts': posts,'tag': tag,'product_list' : productlist , 'category_list' : categorylist , 'count':Category.objects.count()}   
     
@@ -54,14 +59,14 @@ def post_list(request, tag_slug=None):
                   context)
    
     
-def post_detail(request,slug, year, month, day):
-    post = get_object_or_404(Post, slug=slug,
+def post_detail(request, year, month, day, post):
+    post = get_object_or_404(Post, slug=post,
                              status='published',
                              publish__year=year,
                              publish__month=month,
                              publish__day=day)
     # List of active comments for this post
-    comments = post.comments.filter(active=True).order_by("-created")
+    comments = post.comments.filter(active=True)
     new_comment = None
     if request.method == 'POST':
     # A comment was posted
@@ -77,7 +82,7 @@ def post_detail(request,slug, year, month, day):
         comment_form = CommentForm()
         
     # List of similar posts
-    post_tags_ids = Post.tags.values_list('id', flat=True)
+    post_tags_ids = post.tags.values_list('id', flat=True)
     similar_posts = Post.published.filter(tags__in=post_tags_ids)\
                                             .exclude(id=post.id)
     similar_posts = similar_posts.annotate(same_tags=Count('tags'))\
@@ -89,8 +94,7 @@ def post_detail(request,slug, year, month, day):
                    'comments': comments,
                    'new_comment': new_comment,
                    'comment_form': comment_form,
-                   'similar_posts': similar_posts,
-                  })
+                   'similar_posts': similar_posts})
     
 
 def post_share(request, post_id):
@@ -137,4 +141,4 @@ def post_search(request):
                         {'form': form,
                         'query': query,
                         'results': results})
-
+ 
