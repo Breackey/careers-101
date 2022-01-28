@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'recruiters',
     'candidates',
     'django_summernote',
-    'django.contrib.sites',
+    #'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -215,7 +215,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
-SITE_ID = 3
+SITE_ID=1
 LOGIN_REDIRECT_URL = '/'
 
 SOCIALACCOUNT_PROVIDERS = {
