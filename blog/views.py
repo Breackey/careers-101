@@ -59,8 +59,8 @@ def post_list(request, tag_slug=None, category_slug=None):
                   context)
    
     
-def post_detail(request, year, month, day, post):
-    post = get_object_or_404(Post, slug=post,
+def post_detail(request,slug, year, month, day):
+    post = get_object_or_404(Post, slug=slug,
                              status='published',
                              publish__year=year,
                              publish__month=month,
