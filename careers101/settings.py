@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'careers101.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if DEBUG:
+""" if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -112,8 +112,8 @@ if DEBUG:
         }
     }
 
-else:
-    DATABASES = {
+else: """
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'careers101', 
