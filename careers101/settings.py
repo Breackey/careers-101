@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'recruiters',
     'candidates',
     'django_summernote',
-    'django.contrib.sites',
+    #'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
