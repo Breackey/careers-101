@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-a@twmvhl_8l$a50%cq%yf=(%80k0iych3!^7u9l0n)82t0c-cc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'careers101.herokuapp.com','192.34.59.114']
+ALLOWED_HOSTS = ['127.0.0.1',
+                 'careers101.herokuapp.com',
+                 '147.182.240.130'
+                 'careers101.co.ke'
+                 'www.careers101.co.ke']
 
 
 # Application definition
@@ -108,11 +112,10 @@ if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'careers101.db'),
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-else: 
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -215,7 +218,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
-SITE_ID = 3
+SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
 SOCIALACCOUNT_PROVIDERS = {
