@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a@twmvhl_8l$a50%cq%yf=(%80k0iych3!^7u9l0n)82t0c-cc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['careers101.co.ke',
                  'www.careers101.co.ke',
