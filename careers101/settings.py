@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from .secrets import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a@twmvhl_8l$a50%cq%yf=(%80k0iych3!^7u9l0n)82t0c-cc'
+SECRET_KEY = django_secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -120,9 +121,9 @@ else: """
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'careers101', 
-            'USER': 'breackey', 
-            'PASSWORD': 'Leblanc94*',
+            'NAME': db_name, 
+            'USER': db_user, 
+            'PASSWORD': db_pass,
             'HOST': '127.0.0.1', 
             'PORT': '',
         }
@@ -210,11 +211,11 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 """ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails") """
 
-DEFAULT_FROM_EMAIL = 'careeropp101@gmail.com'
+DEFAULT_FROM_EMAIL = default_from_email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'careeropp101@gmail.com'
-EMAIL_HOST_PASSWORD = 'Leblanc94'
+EMAIL_HOST_USER = email_host_user
+EMAIL_HOST_PASSWORD = email_host_pass
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -222,7 +223,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
 SITE_ID = 1
