@@ -26,11 +26,12 @@ SECRET_KEY = 'django-insecure-a@twmvhl_8l$a50%cq%yf=(%80k0iych3!^7u9l0n)82t0c-cc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1',
+ALLOWED_HOSTS = ['careers101.co.ke',
+                 'www.careers101.co.ke',
+                 '147.182.240.130',
                  'careers101.herokuapp.com',
-                 '147.182.240.130'
-                 'careers101.co.ke'
-                 'www.careers101.co.ke']
+                 '127.0.0.1'
+                 ]
 
 
 # Application definition
@@ -123,7 +124,7 @@ else:
             'USER': 'breackey', 
             'PASSWORD': 'Leblanc94*',
             'HOST': '127.0.0.1', 
-            'PORT': '5432',
+            'PORT': '',
         }
     }
 
