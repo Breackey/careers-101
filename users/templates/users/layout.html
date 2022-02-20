@@ -20,7 +20,7 @@
     
     <!-- FAVICONS ICON -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href={% static 'images/logo/careers101.png' %} />
+    <link rel="shortcut icon" type="image/x-icon" href={% static 'images/logo/theicon.PNG' %} />
     
     <!-- PAGE TITLE HERE -->
     <title>{% block title %} Careers101  {% endblock %}</title>
@@ -66,10 +66,12 @@
                   <div class="container clearfix">
                       <!-- website logo -->
                       <div class="logo-header mostion">
-                        <div class="logo">
+                        {% comment %} <div class="logo">
                                     <div class="navbar-brand"><a href="/" style="font-size:150%;font-family:Nosifer; color:#e00c7d; "  >
                                         <b>Careers101</b></a>
                                     </div>					
+                                     {% endcomment %}
+                                     <a href="/"><img src="{% static 'images/logo/theicon.PNG' %}" class="logo" alt=""></a>
                                     </div>
                                     </div>
             
@@ -245,13 +247,16 @@
                   <div class="container clearfix">
                       <!-- website logo -->
                       <div class="logo-header mostion">
-  <div class="logo">
+         {% comment %}  <div class="logo">
               <div class="navbar-brand"><a href="/" style="font-size:150%;font-family:Nosifer; color:#e00c7d; "  >
                   <b>Careers101</b></a>
               </div>					
-              </div>
+               {% endcomment %}
+
+              <a href="/"><img src="{% static 'images/logo/theicon.PNG' %}" class="logo" alt=""></a>
                         </div>
             
+                      </div>
                       <!-- nav toggle button -->
                       <!-- nav toggle button -->
                       <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
