@@ -118,6 +118,7 @@ WSGI_APPLICATION = 'careers101.wsgi.application'
         }
     } 
 else: """
+
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
