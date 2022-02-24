@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = django_secret_key
+SECRET_KEY = '2(4@hs$*qu#b_thpogah@*djux6&(hq)_@aw=#z616w457fl$1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -122,9 +122,9 @@ else: """
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': db_name, 
-            'USER': db_user, 
-            'PASSWORD': db_pass,
+            'NAME': 'careers101', 
+            'USER': 'breackey', 
+            'PASSWORD': 'Leblanc94*',
             'HOST': '127.0.0.1', 
             'PORT': '',
         }
@@ -212,11 +212,11 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 """ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails") """
 
-DEFAULT_FROM_EMAIL = default_from_email
+DEFAULT_FROM_EMAIL = 'careeropp101@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = email_host_user
-EMAIL_HOST_PASSWORD = email_host_pass
+EMAIL_HOST_USER = 'careeropp101@gmail.com'
+EMAIL_HOST_PASSWORD = 'Leblanc94'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
