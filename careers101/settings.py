@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['careers101.co.ke',
                  'www.careers101.co.ke',
-                 
+                 '137.184.232.204',
                  'careers101.herokuapp.com',
                  '127.0.0.1'
                  ]
@@ -121,7 +121,7 @@ else: """
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'careers101', 
+            'NAME': 'careers101db', 
             'USER': 'breackey', 
             'PASSWORD': 'Leblanc94*',
             'HOST': '127.0.0.1', 
