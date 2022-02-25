@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-from .secrets import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['careers101.co.ke',
                  'www.careers101.co.ke',
-                 '147.182.240.130',
+                 
                  'careers101.herokuapp.com',
                  '127.0.0.1'
                  ]
