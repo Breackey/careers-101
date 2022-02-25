@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from .secrets import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a@twmvhl_8l$a50%cq%yf=(%80k0iych3!^7u9l0n)82t0c-cc'
+SECRET_KEY = '2(4@hs$*qu#b_thpogah@*djux6&(hq)_@aw=#z616w457fl$1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -117,6 +118,7 @@ WSGI_APPLICATION = 'careers101.wsgi.application'
         }
     } 
 else: """
+
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -222,7 +224,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
 SITE_ID = 1
