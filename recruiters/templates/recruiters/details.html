@@ -1,4 +1,5 @@
 {% extends "users/layout.html" %} {% load static %} {% block content %}
+{% load blog_tags %}
 <br /><br />
 <div style="background-color: white">
   <div class="row">
@@ -40,6 +41,14 @@
           We make hiring as simple as possible. No more hassles. Just sign in,
           add necessary details about the job post and you are ready to go!
         </p>
+        <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url 'login' %}"
+            role="button"
+            >Create an Account</a
+          >
+        </p>
       </div>
     </div>
     <div class="col-md-6">
@@ -48,6 +57,14 @@
         <p class="lead text-center">
           Post any number of job posts you want for free. We do not charge you
           for just posting jobs!
+        </p>
+        <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url 'add-job' %}"
+            role="button"
+            >Post Jobs</a
+          >
         </p>
       </div>
     </div>
@@ -62,6 +79,14 @@
           Job Posts of premium users enjoy more visibility and thus get more
           applicants in a shorter period of time!<br /><br />All of this for a
           small fee only!
+        </p>
+        <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url 'pricing' %}"
+            role="button"
+            >Go Premium!</a
+          >
         </p>
       </div>
     </div>
@@ -79,8 +104,11 @@
       </div>
     </div>
   </div>
+
+
+
   <div class="row">
-    <div class="col-sm-10 md-8 lg-6 mx-auto">
+    <div class="col md-6 border-right">
       <div style="background: transparent !important" class="jumbotron">
         <h1 class="display-5 text-center">
           Search through the candidate database!
@@ -92,28 +120,75 @@
             >Avaialable in free plan for a limited time!</i
           >
         </p>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-10 md-8 lg-6 mx-auto">
-      <div style="background: transparent !important" class="jumbotron">
-        <h1 class="display-5 text-center">More features coming soon!</h1>
-        <p class="lead text-center">
-          We believe in making the hiring process easier. Thus, we will keep
-          adding new features as we progress and will continue to help you in
-          hiring the best talents!<br /><br />So, what are you waiting for? Get
-          the early access benefits and enjoy premium services for free for a
-          limited time!
-        </p>
         <p class="lead text-center">
           <a
             class="btn btn-primary btn-lg"
-            href="{% url 'add-job' %}"
+            href="{% url 'search-candidates' %}"
             role="button"
-            >Post jobs now!</a
+            >Search Candidates</a
           >
         </p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="background: transparent !important" class="jumbotron">
+        <h1 class="display-5 text-center">
+          More features coming soon!
+        </h1>
+        <p class="lead text-center">
+          Subscribe to our newsletter and get the latest jobs
+           and career tips for recruiters & employers delivered straight to your inbox!
+        </p>
+         <p class="lead text-center">
+          <a
+            class="btn btn-primary btn-lg"
+            href="{% url "newsletter:subscribe" %}"
+            role="button"
+            >Subscribe!</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 md-8 lg-6 mx-auto">
+      <div style="background: transparent !important" class="jumbotron">
+      
+       	<div class="section-head text-black text-center">
+  <h1 class="display-5 text-center">
+          Career Tips
+        </h1>
+        	<p>Read our blogs to get some career hacks to get you moving!</p>
+				</div>
+				<div class="blog-carousel owl-carousel owl-btn-center-lr owl-btn-3 owl-theme owl-btn-center-lr owl-btn-1">
+				{% for post in posts %} 
+				 
+					<div class="item">
+						<div class="blog-post blog-grid blog-style-1">
+							<div class="dez-post-media dez-img-effect radius-sm"> <a href="{{ post.get_absolute_url }}"><img src="static/images/blog/grid/pic3.jpg" alt=""></a> </div>
+							<div class="dez-info">
+								 <div class="dez-post-meta">
+									<ul class="d-flex align-items-center">
+										<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
+										<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">5k</a> </li>
+									</ul>
+								</div>
+								<div class="dez-post-title ">
+									<h5 class="post-title font-20"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+								</div>
+								<div class="dez-post-text">
+										<p>{{ post.content|markdown|truncatewords_html:30 }}</p>
+								</div>
+								<div class="dez-post-readmore blog-share"> 
+									<a href="{{ post.get_absolute_url }}" title="READ MORE" rel="bookmark" class="site-button outline">READ MORE</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				 
+				</div>
       </div>
     </div>
   </div>

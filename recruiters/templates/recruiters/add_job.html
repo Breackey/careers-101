@@ -18,6 +18,7 @@
             {% csrf_token %}
             <fieldset class="form-group">
               <br />
+              {{ form.media }}
               {{ form|crispy }}
             </fieldset>
             <div class="form-group">

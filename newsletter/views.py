@@ -12,7 +12,6 @@ from .forms import NewsletterUserSubscribeForm, NewsletterCreationForm
 from django.core.exceptions import PermissionDenied
 
 
-
 def newsletter_subscribe(request):
     form = NewsletterUserSubscribeForm(request.POST or None)
     if form.is_valid():
@@ -30,7 +29,7 @@ def newsletter_subscribe(request):
             subject = "Thank you for subscribing to our Newsletter!"
             from_email = settings.EMAIL_HOST_USER
             to_email = [instance.email]
-            with open(str(settings.BASE_DIR) + "/templates/newsletters/subscribe_email.txt") as f:
+            with open(str(settings.BASE_DIR) + "/newsletter/templates/newsletters/subscribe_email.txt") as f:
                 subscribe_message = f.read()
             message = EmailMultiAlternatives(subject=subject, body=subscribe_message, from_email = from_email, to=to_email)
             html_template = get_template("newsletters/subscribe_email.html").render()
@@ -57,7 +56,7 @@ def newsletter_unsubscribe(request):
             subject = "You have successfully unsubscribed to our Newsletter!"
             from_email = settings.EMAIL_HOST_USER
             to_email = [instance.email]
-            with open(str(settings.BASE_DIR) + "/templates/newsletters/unsubscribe_email.txt") as f:
+            with open(str(settings.BASE_DIR) + "/newsletter/templates/newsletters/unsubscribe_email.txt") as f:
                 unsubscribe_message = f.read()
             message = EmailMultiAlternatives(subject=subject, body=unsubscribe_message, from_email = from_email, to=to_email)
             html_template = get_template("newsletters/unsubscribe_email.html").render()

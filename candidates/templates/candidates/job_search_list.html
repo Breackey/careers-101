@@ -43,10 +43,7 @@
             </h4></a
           >
           <p style="font-size: 17px">{{job.company}}<br />{{job.location}}</p>
-          <p style="font-size: 15px">
-            {{job.description|truncatewords:30}} -
-            <a href="{% url 'job-detail' job.slug %}">Read More</a>
-          </p>
+          
         </span>
         <div class="card-footer">
           <span style="font-size: 14px"
