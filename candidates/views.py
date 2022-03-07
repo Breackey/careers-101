@@ -77,6 +77,7 @@ def job_search_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
+        'jobs_page': "active",
         'jobs': page_obj,
         'query': query,
     }

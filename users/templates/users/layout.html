@@ -94,21 +94,33 @@
             >
                    
                 </li>
-                <li class = "nav-item {{ intel_page }}">
-                  <a
-              class=" nav-link "
-              href="{% url 'intelligent-search' %}"
-              >Relevant Jobs</a
-            > 
-                   
-                </li>
+                <li class = "nav-item {{ intel_page }}  or {{ jobs_page }}">
+                  <a href="#"> Jobs <i class="fa fa-chevron-down"></i></a>
+                  
+                  <ul class="sub-menu">
+                      <li class = "nav-item {{ jobs_page }}"> 
+                    <a
+                class=" nav-link "
+                href="{% url 'job-search-list' %}"
+                >All Jobs</a
+              > 
+                    
+                  </li>
+
+                    <li class = "nav-item {{ intel_page }}"> 
+                    <a
+                class=" nav-link "
+                href="{% url 'intelligent-search' %}"
+                >Relevant Jobs</a
+              > 
+                    
+                  </li>
+                </ul>
   
   
   <li class = "nav-item  {{ profile_page }} or {{ account_page }}" >
                 <a href="#"> Dashboard<i class="fa fa-chevron-down"></i>
   
-              
-                 
                 </a>
                   <ul class="sub-menu">
                   

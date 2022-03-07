@@ -28,7 +28,7 @@ class Job(models.Model):
     location = models.CharField(max_length=255)
     description = models.TextField()
     experience = models.IntegerField(null=True, blank=True)
-    qualification = models.CharField(max_length=30, choices=QUALIFICATIONS, default='Full Time', null=True, blank=True)
+    qualification = models.CharField(max_length=30, choices=QUALIFICATIONS, default='None', null=True, blank=True)
     skills_req = models.CharField(max_length=200)
     job_type = models.CharField(max_length=30, choices=CHOICES, default='Full Time', null=True)
     link = models.URLField(null=True, blank=True)

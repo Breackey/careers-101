@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '2(4@hs$*qu#b_thpogah@*djux6&(hq)_@aw=#z616w457fl$1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['careers101.co.ke',
                  'www.careers101.co.ke',
@@ -120,7 +120,7 @@ WSGI_APPLICATION = 'careers101.wsgi.application'
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     } 
-else: """
+else:  """
 
 DATABASES = {
         'default': {
