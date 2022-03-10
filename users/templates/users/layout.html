@@ -62,129 +62,87 @@
     <div class="sticky-header main-bar-wraper navbar-expand-lg">
         <div class="main-bar clearfix">
            
-            <div class="container clearfix">
-                <a class="navbar-brand" href="{% url 'detail-candidates' %}">
+          <div class="container clearfix">
+              <a class="navbar-brand" href="{% url 'detail-candidates' %}">
                 <!-- website logo -->
                 <div class="logo-header mostion">
-                        <a href="/"><img 
-                            src="{% static 'images/logo/theicon.PNG' %}" 
-                            class="logo" 
-                            alt="careers101"
-                            style="height: 80%; width: 80%;"
-                           
-                            ></a>
-                   
+                  <a href="/"><img 
+                      src="{% static 'images/logo/theicon.PNG' %}" 
+                      class="logo" 
+                      alt="careers101"
+                      style="height: 80%; width: 80%;"
+                     
+                      ></a>
+             
                 </div>
-            </a>
-                <!-- nav toggle button -->
-                <!-- nav toggle button -->
-                <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <!-- main nav -->
-                
-                      <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavAltMarkup">
-                          <ul class="nav navbar-nav">
-                <li class = "nav-item {{ home_page }}">
-                  <a class=" nav-link " href="{% url 'home' %}"
-              >Home</a
-            >
-                   
-                </li>
-                <li class = "nav-item {{ intel_page }}  or {{ jobs_page }}">
-                  <a href="#"> Jobs <i class="fa fa-chevron-down"></i></a>
-                  
-                  <ul class="sub-menu">
-                      <li class = "nav-item {{ jobs_page }}"> 
-                    <a
-                class=" nav-link "
-                href="{% url 'job-search-list' %}"
-                >All Jobs</a
-              > 
-                    
-                  </li>
+               </a>
+          <!-- nav toggle button -->
+          <!-- nav toggle button -->
+          <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
 
-                    <li class = "nav-item {{ intel_page }}"> 
-                    <a
-                class=" nav-link "
-                href="{% url 'intelligent-search' %}"
-                >Relevant Jobs</a
-              > 
-                    
-                  </li>
-                </ul>
-  
-  
-  <li class = "nav-item  {{ profile_page }} or {{ account_page }}" >
-                <a href="#"> Dashboard<i class="fa fa-chevron-down"></i>
-  
-                </a>
-                  <ul class="sub-menu">
-                  
-  
-                <li class = "nav-item  {{ profile_page }}"><a
-              class=" nav-link"
-              href="{% url 'my-profile' %}"
-              >My Profile</a
-            >
-  </li>
-  <li class = "nav-item {{ account_page }} ">
-  <a
-              class=" nav-link "
-              href="{% url 'account' %}"
-              >My Account</a
-            >
-        </li>
-            </ul>
-            </li>
-  
-                <li class = "nav-item {{ post_list }} ">
-                  <a href="{% url 'blog:post_list' %}">Blog </a>
-                 
-                </li>
-                {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
-  
-  {% if user.is_authenticated %}
-  
-                          <li>
-                <a href="{% url 'logout' %}" class="site-button" ><i class="fa fa-lock"></i> Logout</a>
-                          </li>
-              <li>
-  <a class="nav-item nav-link" href="{% url 'add-job' %}"
-              >Employers/Recruiters</a
-            >
-        </li>
-         {% else %}
-         <li>
-            <a href="{% url 'logout' %}" class="site-button" ><i class="fa fa-lock"></i>Login</a
-            >
-        </li>
-        <li>
-            <a class="nav-item nav-link" href="{% url 'detail-recruiters' %}"
-              >Employers/Recruiters</a
-            >
-        </li>
-            {% endif %}
-            
-                      </div>
-                  </div>
-                  </div>
-              </div>
+
+          <!-- main nav -->
+          
+        <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
+                <ul class="nav navbar-nav">
+                        <li class = "nav-item {{ home_page }}"><a class=" dez-page " href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class = "nav-item {{ intel_page }}  or {{ jobs_page }}"><a href="#"> Jobs <i class="fa fa-chevron-down"></i></a>
+                          <ul class="sub-menu">
+                            <li class = "nav-item {{ jobs_page }}"><a class=" dez-page " href="{% url 'job-search-list' %}">All Jobs</a>
+                            </li>
+                            <li class = "nav-item {{ intel_page }}"><a class=" dez-page " href="{% url 'intelligent-search' %}">Relevant Jobs</a> 
+                            </li>
+                          </ul>
+                        </li>
+                        <li class = "nav-item  {{ profile_page }} or {{ account_page }}" ><a href="#"> Dashboard<i class="fa fa-chevron-down"></i></a>
+                          <ul class="sub-menu">
+                            <li class = "nav-item  {{ profile_page }}"><a class=" dez-page" href="{% url 'my-profile' %}">My Profile</a>
+                            </li>
+                            <li class = "nav-item {{ account_page }} "><a class=" dez-page " href="{% url 'account' %}" >My Account</a>
+                            </li>
+                            </ul>
+                        </li>
+                        <li class = "nav-item {{ post_list }} "><a href="{% url 'blog:post_list' %}">Blog </a>
+                        </li>
+                          {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
+                          {% if user.is_authenticated %}
+                        <li>
+                          <a href="{% url 'logout' %}" class="site-button" ><i class="fa fa-lock"></i> Logout</a>
+                        </li>
+                        <li>
+                          <a class="nav-item dez-page" href="{% url 'add-job' %}">Employers/Recruiters</a>
+                        </li>
+                          {% else %}
+                        <li>
+                          <a href="{% url 'login' %}" class="site-button" ><i class="fa fa-lock"></i>Login</a>
+                        </li>
+                        <li>
+                          <a class="nav-item dez-page" href="{% url 'detail-recruiters' %}">Employers/Recruiters</a>
+                        </li>
+                          {% endif %}
+                      </ul>
+                    </div>
           </div>
+        </div>
+    </div>
+          
           <!-- main header END -->
-      </header>
+</header>
 
-       {% else %}
+{% else %}
+
   
-       <header class="site-header mo-left header fullwidth">
+<header class="site-header mo-left header fullwidth">
         <!-- main header -->
-        <div class="sticky-header main-bar-wraper navbar-expand-lg">
-            <div class="main-bar clearfix">
+  <div class="sticky-header main-bar-wraper navbar-expand-lg">
+    <div class="main-bar clearfix">
                
-                <div class="container clearfix">
+      <div class="container clearfix">
                   <a class="navbar-brand" href="{% url 'detail-recruiters' %}">
                     <!-- website logo -->
                     <div class="logo-header mostion">
@@ -197,7 +155,7 @@
                                 ></a>
                        
                     </div>
-                </a>
+                  </a>
                     <!-- nav toggle button -->
                     <!-- nav toggle button -->
                     <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -205,83 +163,65 @@
                         <span></span>
                         <span></span>
                     </button>
-                    
+
+         
                     <!-- main nav -->
                     
-                      <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavAltMarkup">
+                  <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
                           <ul class="nav navbar-nav">
-                <li class = "nav-item {{ rec_home_page }}">
-                  <a class=" nav-link " href="{% url 'detail-recruiters' %}"
-              >Home</a
-            >
-                   
-                </li>
-                <li class = "nav-item {{ add_job_page }}">
-                  <a
-              class=" nav-link"
-              href="{% url 'add-job' %}"
-              >Post Job</a
-            >
-                   
-                </li>
+                            <li class = "nav-item {{ rec_home_page }}">
+                              <a class=" dez-page " href="{% url 'detail-recruiters' %}">Home</a>
+                            </li>
+                            <li class = "nav-item {{ add_job_page }}">
+                              <a class=" dez-page"href="{% url 'add-job' %}">Post Job</a>                   
+                            </li>
   
-  <li class = "nav-item  {{ manage_jobs_page }} or {{ search_candidates_page }}" >
-                <a href="#"> Dashboard<i class="fa fa-chevron-down"></i> </a>
-                  <ul class="sub-menu">
-                        <li class = "nav-item {{ manage_jobs_page }}">
-  <a
-              class=" nav-link "
-              href="{% url 'job-list' %}"
-              >Manage Jobs</a
-            >
-  </li>
-  <li class = "nav-item {{ search_candidates_page }}">
-  <a
-              class=" nav-link "
-              href="{% url 'search-candidates' %}"
-              >Search Candidates</a
-            >
-        </li>
-            </ul>
-            </li>
+                            <li class = "nav-item  {{ manage_jobs_page }} or {{ search_candidates_page }}" >
+                              <a href="#"> Dashboard<i class="fa fa-chevron-down"></i> </a>
+                              <ul class="sub-menu">
+                                <li class = "nav-item {{ manage_jobs_page }}">
+                                  <a class=" dez-page "href="{% url 'job-list' %}">Manage Jobs</a>
+                                </li>
+                                <li class = "nav-item {{ search_candidates_page }}">
+                                <a class=" dez-page "href="{% url 'search-candidates' %}">Search Candidates</a>
+                                </li>
+                              </ul>
+                            </li>
   
-                <li class = "nav-item {{ post_list }} ">
-                  <a href="{% url 'blog:post_list' %}">Blog </a>
+                            <li class = "nav-item {{ post_list }} ">
+                              <a href="{% url 'blog:post_list' %}">Blog </a>
                  
-                </li>
-                {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
+                            </li>
+                            {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
   
-  {% if user.is_authenticated %}
+                            {% if user.is_authenticated %}
   
-                          <li>
-                <a href="{% url 'logout' %}" class="site-button" ><i class="fa fa-lock"></i> Logout</a>
-                          </li>
-        <li>
-            <a class="nav-item nav-link" href="{% url 'home' %}"
-              >Job Seekers/Candidates</a
-            >
-        </li>
-         {% else %}
-         <li>
-            <a href="{% url 'logout' %}" class="site-button" ><i class="fa fa-lock"></i>Login</a
-            >
-        </li>
-        <li>
-            <a class="nav-item nav-link" href="{% url 'home' %}"
-              >Job Seekers/Candidates</a
-            >
-        </li>
-            {% endif %}
+                            <li>
+                              <a href="{% url 'logout' %}" class="site-button" ><i class="fa fa-lock"></i> Logout</a>
+                            </li>
+                            <li>
+                              <a class="nav-item dez-page" href="{% url 'home' %}"
+                                >Job Seekers/Candidates</a>
+                              </li>
+                            {% else %}
+                            <li>
+                              <a href="{% url 'login' %}" class="site-button" ><i class="fa fa-lock"></i>Login</a>
+                            </li>
+                            <li>
+                              <a class="nav-item dez-page" href="{% url 'home' %}"
+                                >Job Seekers/Candidates</a>
+                            </li>
+                            {% endif %}
   
-    </ul>			
-                      </div>
+                          </ul>			
                   </div>
-                  </div>
-              </div>
-          </div>
+      </div>
+    </div>
+  </div>
           <!-- main header END -->
-      </header>
-      {% endif %}
+</header>
+
+{% endif %}
       <!-- header END -->
       <!-- Content -->
     <div>
