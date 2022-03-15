@@ -34,20 +34,22 @@
   {%if jobs %}
   <div class="row">
     {% for job in jobs %}
+
     <div class="col-md-6">
       <div class="card card-signin my-2">
         <span class="ml-3 mt-3">
-          <a href="{% url 'job-detail' job.slug %}"
+          <a href="{% url 'add-job-detail' job.slug %}"
             ><h4 class="text-dark">
-              <b>{{job.title}} ({{job.job_type}})</b>
+              <span><b>{{job.title}}</b></span>
             </h4></a
           >
-          <p style="font-size: 17px">{{job.company}}<br />{{job.location}}</p>
-          
+          <p style="font-size: 17px"><i class="mg5r fa fa-briefcase"></i> {{job.company}}  |  <i class="mg5r fa fa-envelope"></i> {{job.job_type}} </p>
+          <p style="font-size: 17px"><i class="fa fa-map-marker mg5r"></i> {{job.location}}  |  <i class="mg5r fa fa-clock"></i> Deadline: {{job.deadline}}  </p>
+           
         </span>
         <div class="card-footer">
           <span style="font-size: 14px"
-            >Posted on {{job.date_posted|date:"F d, Y"}}</span
+            ><i class="fa fa-calendar"></i> Posted on {{job.date_posted|date:"F d, Y"}}</span
           >
         </div>
       </div>

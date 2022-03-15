@@ -8,16 +8,17 @@
     <div class="col-md-6">
       <div class="card card-signin my-2">
         <span class="ml-3 mt-3">
-          <a href="{% url 'job-detail' job.job.slug %}"
+          <a href="{% url 'add-job-detail' job.job.slug %}"
             ><h4 class="text-dark">
-              <b>{{job.job.title}} ({{job.job.job_type}})</b>
+              <span><b>{{job.job.title}}</b></span>
             </h4></a
           >
-          <p style="font-size: 17px">
-            {{job.job.company}}<br />{{job.job.location}}
-          </p>
+          <p style="font-size: 17px"><i class="mg5r fa fa-briefcase"></i> {{job.job.company}}  |  <i class="mg5r fa fa-envelope"></i> {{job.job.job_type}} </p>
+          <p style="font-size: 17px"><i class="fa fa-map-marker mg5r"></i> {{job.job.location}}  |  <i class="mg5r fa fa-clock"></i> Deadline: {{job.job.deadline}}  </p>
            
         </span>
+        
+           
         <div class="card-footer">
           {% if status == 0 %}
           <span style="font-size: 16px"
