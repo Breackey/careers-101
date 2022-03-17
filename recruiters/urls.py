@@ -16,4 +16,5 @@ urlpatterns = [
          views.select_applicant, name='select-applicant'),
     path('job/<job_id>>/remove-applicant/<can_id>/',
          views.remove_applicant, name='remove-applicant'),
+    path('mark-filled/<int:job_id>', views.filled, name='job-mark-filled'),
 ]

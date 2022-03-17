@@ -1,3 +1,4 @@
+from msilib.schema import ListView
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.utils import timezone
@@ -31,6 +32,8 @@ def home(request):
     }
 
     return render(request, 'candidates/home.html', context)
+
+
 
 def candidate_dashboard(request):
     context = {

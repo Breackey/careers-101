@@ -9,8 +9,11 @@ from django.utils import timezone
 CHOICES = (
     ('Full Time', 'Full Time'),
     ('Part Time', 'Part Time'),
+    ('Contract', 'Contract'),
+    ('Permanent','Permanent'),
     ('Internship', 'Internship'),
-    ('Remote', 'Remote'),
+    ('Attachment', 'Attachment'),
+    
 )
 
 QUALIFICATIONS = (
@@ -35,6 +38,7 @@ class Job(models.Model):
     slug = AutoSlugField(populate_from='title', unique=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     deadline = models.DateField(null=True, blank=True)
+    filled = models.BooleanField(default=False)
     
     class Meta:
         ordering = ('-date_posted',)

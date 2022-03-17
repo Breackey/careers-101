@@ -91,35 +91,36 @@
                 <ul class="nav navbar-nav">
                         <li class = "nav-item {{ home_page }}"><a class=" dez-page " href="{% url 'home' %}">Home</a>
                         </li>
-                        <li class = "nav-item {{ intel_page }}  or {{ jobs_page }}"><a href="#"> Jobs <i class="fa fa-chevron-down"></i></a>
+                        <li class = "nav-item  {{ jobs_page }}"><a class=" dez-page " href="{% url 'job-search-list' %}"> Jobs </a>
+                        </li>
+                        <li class = "nav-item {{ post_list }} "><a href="{% url 'blog:post_list' %}">Blog </a>
+                        </li>
+                          
+                          {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
+                          {% if user.is_authenticated %}
+                          <li class = "nav-item  {{ profile_page }} or {{ account_page }}" ><a href="#"> 
+                            {% if not rec_navbar %}
+                              {{ request.user.username }} 
+                                  {% endif %}
+                          <i class="fa fa-chevron-down"></i></a>
                           <ul class="sub-menu">
-                            <li class = "nav-item {{ jobs_page }}"><a class=" dez-page " href="{% url 'job-search-list' %}">All Jobs</a>
-                            </li>
                             <li class = "nav-item {{ intel_page }}"><a class=" dez-page " href="{% url 'intelligent-search' %}">Relevant Jobs</a> 
                             </li>
-                          </ul>
-                        </li>
-                        <li class = "nav-item  {{ profile_page }} or {{ account_page }}" ><a href="#"> Dashboard<i class="fa fa-chevron-down"></i></a>
-                          <ul class="sub-menu">
                             <li class = "nav-item  {{ profile_page }}"><a class=" dez-page" href="{% url 'my-profile' %}">My Profile</a>
                             </li>
                             <li class = "nav-item {{ account_page }} "><a class=" dez-page " href="{% url 'account' %}" >My Account</a>
                             </li>
                             </ul>
                         </li>
-                        <li class = "nav-item {{ post_list }} "><a href="{% url 'blog:post_list' %}">Blog </a>
-                        </li>
-                          {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
-                          {% if user.is_authenticated %}
                         <li>
-                          <a href="{% url 'logout' %}" class="site-button" ><i class="fa fa-lock"></i> Logout</a>
+                          <a href="{% url 'logout' %}" class="nav-item dez-page" ><i class="fa fa-lock"></i> Logout</a>
                         </li>
                         <li>
                           <a class="nav-item dez-page" href="{% url 'add-job' %}">Employers/Recruiters</a>
                         </li>
                           {% else %}
                         <li>
-                          <a href="{% url 'login' %}" class="site-button" ><i class="fa fa-lock"></i>Login</a>
+                          <a href="{% url 'login' %}" class="nav-item dez-page" ><i class="fa fa-lock"></i>Login</a>
                         </li>
                         <li>
                           <a class="nav-item dez-page" href="{% url 'detail-recruiters' %}">Employers/Recruiters</a>
@@ -176,8 +177,20 @@
                               <a class=" dez-page"href="{% url 'add-job' %}">Post Job</a>                   
                             </li>
   
+                            <li class = "nav-item {{ post_list }} ">
+                              <a href="{% url 'blog:post_list' %}">Blog </a>
+                 
+                            </li>
+                            {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
+  
+                            {% if user.is_authenticated %}
+  
                             <li class = "nav-item  {{ manage_jobs_page }} or {{ search_candidates_page }}" >
-                              <a href="#"> Dashboard<i class="fa fa-chevron-down"></i> </a>
+                              <a href="#"> 
+                                {% if rec_navbar %}
+                                  {{ request.user.username }} 
+                                {% endif %}
+                                <i class="fa fa-chevron-down"></i> </a>
                               <ul class="sub-menu">
                                 <li class = "nav-item {{ manage_jobs_page }}">
                                   <a class=" dez-page "href="{% url 'job-list' %}">Manage Jobs</a>
@@ -187,17 +200,9 @@
                                 </li>
                               </ul>
                             </li>
-  
-                            <li class = "nav-item {{ post_list }} ">
-                              <a href="{% url 'blog:post_list' %}">Blog </a>
-                 
-                            </li>
-                            {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
-  
-                            {% if user.is_authenticated %}
-  
+                            
                             <li>
-                              <a href="{% url 'logout' %}" class="site-button" ><i class="fa fa-lock"></i> Logout</a>
+                              <a href="{% url 'logout' %}" class="nav-item dez-page" ><i class="fa fa-lock"></i> Logout</a>
                             </li>
                             <li>
                               <a class="nav-item dez-page" href="{% url 'home' %}"
@@ -205,7 +210,7 @@
                               </li>
                             {% else %}
                             <li>
-                              <a href="{% url 'login' %}" class="site-button" ><i class="fa fa-lock"></i>Login</a>
+                              <a href="{% url 'login' %}" class="nav-item dez-page" ><i class="fa fa-lock"></i>Login</a>
                             </li>
                             <li>
                               <a class="nav-item dez-page" href="{% url 'home' %}"

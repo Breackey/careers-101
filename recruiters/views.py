@@ -1,4 +1,6 @@
+from msilib.schema import ListView
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 from .models import Job, Applicants, Selected
 from candidates.models import Profile, Skill
 from .forms import NewJobForm
@@ -81,7 +83,7 @@ def all_jobs(request):
         'jobs': page_obj,
         'rec_navbar': 1,
     }
-    return render(request, 'recruiters/job_posts.html', context)
+    return render(request, 'recruiters/job_posts.html', context) 
 
 
 @login_required
@@ -213,3 +215,31 @@ def remove_applicant(request, can_id, job_id):
     applicant = Applicants.objects.filter(job=job, applicant=user).first()
     applicant.delete()
     return HttpResponseRedirect('/hiring/job/{}/applicants'.format(job.slug))
+
+
+@login_required
+def filled(request, job_id=None):
+    job = Job.objects.get(recruiter=request.user, id=job_id)
+    job.filled = True
+    job.save()
+    return HttpResponseRedirect(reverse_lazy('job-list'))
+
+
+""" @login_required
+def all_jobs(request, slug):
+    jobs = Job.objects.filter(recruiter=request.user).order_by('-date_posted')
+    job = get_object_or_404(Job, slug=slug)
+    selected = Selected.objects.filter(job=job)
+    applicants = Applicants.objects.filter(job=job)
+    paginator = Paginator(jobs, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'manage_jobs_page': "active",
+        'jobs': page_obj,
+        'rec_navbar': 1,
+        'applicants': applicants,
+        'selected': selected,
+        'job': job,
+    }
+    return render(request, 'recruiters/job_posts.html', context) """
