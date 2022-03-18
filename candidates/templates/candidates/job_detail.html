@@ -1,4 +1,7 @@
-{% extends "users/layout.html" %} {% load static %} {% block content %}
+{% extends "users/layout.html" %} 
+{% load static %} 
+{% load social_share %}
+{% block content %}
 <br /><br />
     <!-- Content -->
     <div class="page-content bg-white">
@@ -40,6 +43,22 @@
 												<li><i class="ti-shield"></i><strong class="font-weight-700 text-black">Experience</strong>{{job.experience}}</li>
 								
 											</ul>
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-6">
+										<div class="widget bg-white p-lr20 p-t20  widget_getintuch radius-sm">
+											<h4 class="text-black font-weight-700 p-t10 m-b15">Share Job<i class="fa fa-share-alt" style="font-size:36px"></i></h4>
+											<ul>
+												<li>{% post_to_facebook object_or_url '<i class="fa fa-facebook-f" style="font-size:36px; color:#3b5998"></i>' %}<strong class="font-weight-700 text-black" style="color:#3b5998">Facebook</strong></li>
+												<li>{% post_to_twitter "New Job Post: {{job.title}}. Check it out!" object_or_url '<i class="fa fa-twitter" style="font-size:36px; color:#1DA1F2;"></i>' %}<strong class="font-weight-700 text-black"style="color:#1DA1F2">Twitter</strong></li>
+												<li>{% send_email job.title "New Job Post: {{job.title}}. Check it out!" object_or_url '<i class="fa fa-envelope" style="font-size:36px;color:#500050"></i>' %}</i><strong class="font-weight-700 text-black" style="color:#500050">Email</strong></li>
+												<li>{% post_to_reddit "New Job Post: {{job.title}}" object_or_url '<i class="fa fa-reddit-alien" style="font-size:36px;color:#ff4500"></i>'%}<strong class="font-weight-700 text-black" style="color:#ff4500">Reddit</strong></li>
+												<li>{% post_to_telegram "New Job Post: {{job.title}}" object_or_url '<i class="fa fa-telegram" style="font-size:36px;color:#0088CC"></i>'%}</i><strong class="font-weight-700 text-black" style="color:#0088CC">Telegram</strong></li>
+												<li>{% post_to_whatsapp object_or_url '<i class="fa fa-whatsapp" style="font-size:36px;color:#075e54"></i>' %}</i><strong class="font-weight-700 text-black" style="color:#075e54">WhatsApp</strong></li>
+												<li>{% post_to_linkedin object_or_url %}<strong class="font-weight-700 text-black"style="color:#0e76a8">LinkedIn</strong></li>
+												<li>{% save_to_pinterest object_or_url %}</i><strong class="font-weight-700 text-black"style="color:#c8232c">Pinterest</strong></li>
+											</ul>
+											
 										</div>
 									</div>
 								</div>
@@ -98,7 +117,7 @@
 								><b>Remove</b></a
 							  >
 							  {% endif %}
-
+ 
 							</div>
 						</div>
 					</div>
@@ -107,47 +126,52 @@
 			<hr my-1 />           <!-- Job Detail -->
 			<!-- Our Jobs -->
 			<div class="section-full content-inner">
+				
 				<div class="container">
+					
 					<h3 class="text-center">Similar Jobs</h3>
-					<div class="row">
-						{% for rel_job in relevant_jobs %}
-						<div class="col-xl-3 col-lg-6 col-md-6">
-							<div class="m-b30 blog-grid">
-                                <div class="dez-info p-a20 border-1">
-                                    <div class="dez-post-title ">
-                                        <h5 class="post-title"><a href="{% url 'job-detail' rel_job.slug %}">{{rel_job.title}}</a></h5>
-                                    </div>
-                                    <div class="dez-post-meta ">
-                                        <ul>
-                                            <li class="post-date"> <i class="ti-location-pin"></i> {{rel_job.company}} </li>
-											<li class="post-date"> <i class="ti-location-pin"></i> {{rel_job.location}} </li>
-                                            <li class="post-author"><i class="ti-user"></i>By <a href="#">{{rel_job.job_type}}</a> </li>
-                                        </ul>
-                                    </div>
-                                    <div class="dez-post-text">
-                                         <p>{{rel_job.description|truncatewords:15|safe}}</p>
-                                    </div>
-								
-                                   	<div class="dez-post-readmore"> 
-										<a href="{% url 'job-detail' rel_job.slug %}" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
+
+					<div class="blog-carousel owl-carousel owl-btn-center-lr owl-btn-3 owl-theme owl-btn-center-lr owl-btn-1">
+						{% for rel_job in relevant_jobs %} 
+						 
+							<div class="item">
+								<div class="blog-post blog-grid blog-style-1">
+									<div class="dez-info">
+										<div class="dez-post-title ">
+											<h5 class="post-title font-20"><a href="{% url 'job-detail' rel_job.slug %}">{{rel_job.title}}</a></h5>
+										</div>
+										<div class="dez-post-meta ">
+											<ul>
+												<li class="post-date"> <i class="ti-user"></i> {{rel_job.company}} </li>
+												<li class="post-date"> <i class="ti-location-pin"></i> {{rel_job.location}} </li>
+												<li class="post-author"><i class="ti-briefcase"></i> <a href="#">{{rel_job.job_type}}</a> </li>
+											</ul>
+										</div>
+										 
+										<div class="dez-post-readmore blog-share"> 
+												<a href="{% url 'job-detail' rel_job.slug %}" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
+										</div>
+										<div class="card-footer">
+												<span style="font-size: 14px"
+												  >Posted on {{rel_job.date_posted|timesince}} ago</span
+												>
+										</div>
 									</div>
-                  					<div class="card-footer">
-										<span style="font-size: 14px"
-										  >Posted on {{rel_job.date_posted|date:"F d, Y"}}</span
-										>
-									</div>
-                				</div>
-              				</div>
-						</div>
-						{% endfor %}
+								</div>
+							</div>
+							{% endfor %}
+						 
+							 
 					</div>
 				</div>
 			</div>
+		 
 			<!-- Our Jobs END -->
 		</div>
 	</div>
     </div>
 </div>
+{% add_pinterest_script %} <!--  Required for save_to_pinterest. Add to the end of body tag. -->
 	{% endblock content %}
     <!-- Content END-->
 

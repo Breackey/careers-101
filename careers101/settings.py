@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'taggit',
     'django_summernote',
+    'django_social_share',
     
     'django.contrib.sites',
     'allauth',
