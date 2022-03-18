@@ -127,44 +127,34 @@
 			<!-- Our Jobs -->
 			<div class="section-full content-inner">
 				
-				<div class="container">
-					
-						<h3 class="text-center">Similar Jobs</h3>
-						
-						<div class="row">
-							{% for rel_job in relevant_jobs %}
-							<div class="col-xl-3 col-lg-6 col-md-6">
-								<div class="m-b30 blog-grid">
-									<div class="dez-info p-a20 border-1">
-										<div class="dez-post-title ">
-											<h5 class="post-title"><a href="{% url 'job-detail' rel_job.slug %}">{{rel_job.title}}</a></h5>
-										</div>
-										 
-										<div class="dez-post-meta ">
-											<ul>
-												<li class="post-author"> <i class="ti-user"></i> {{rel_job.company}} </li>
-												<li class="post-date"> <i class="ti-location-pin"></i> {{rel_job.location}} </li>
-												<li class="post-date"><i class="ti-briefcase"></i> {{rel_job.job_type}}</a> </li>
-											</ul>
-										</div>
-										 
-									    <div class="dez-post-readmore"> 
-											<a href="{% url 'job-detail' rel_job.slug %}" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
-										</div>
-										<div class="card-footer">
-											<span style="font-size: 14px"
-											  >Posted {{rel_job.date_posted|timesince}} ago</span
-											>
-										</div>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
+				<h3 class="text-center">Similar Jobs</h3>
+				<div class="row">
+					{% for rel_job in relevant_jobs %}
+					<div class="col-md-6">
+					<div class="card card-signin my-2">
+						<span class="ml-3 mt-3">
+						<a href="{% url 'job-detail' rel_job.slug %}"
+							><h4 class="text-dark">
+							<b>{{rel_job.title}} ({{rel_job.job_type}})</b>
+							</h4></a
+						>
+						<p style="font-size: 17px">
+							{{rel_job.company}}<br />{{rel_job.location}}
+						</p>
+						<p style="font-size: 15px">
+							{{rel_job.description|truncatewords:30|safe}} -
+							<a href="{% url 'job-detail' rel_job.slug %}">Read More</a>
+						</p>
+						</span>
+						<div class="card-footer">
+						<span style="font-size: 14px"
+							>Posted on {{rel_job.date_posted|date:"F d, Y"}}</span
+						>
 						</div>
-						
-						
-						 
-				</div>
+					</div>
+					</div>
+					{% endfor %}
+  </div>
 				 
 			</div>
 		 
