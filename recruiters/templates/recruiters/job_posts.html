@@ -32,7 +32,7 @@
                         {% for job in jobs %}
 
                             <tr>
-                                <th><a href="{% url 'job-detail' job.slug %}">{{ job.title }}</a>
+                                <th><a href="{% url 'add-job-detail' job.slug %}">{{ job.title }}</a>
                                 </th>
                                 <td>
                                     {% if job.filled %}
