@@ -33,7 +33,7 @@ django-pwa==1.0.10
 
 django-rest-auth==0.9.5
 
-django-taggit==1.5.1
+django-taggit==2.1.0
 
 djangorestframework==3.12.4
 
