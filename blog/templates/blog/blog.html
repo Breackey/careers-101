@@ -1,4 +1,5 @@
 {% extends "users/layout.html" %}
+{% load hitcount_tags %}
 {% load blog_tags %}
 {% load static %}
 {% load bootstrap4 %}
@@ -46,6 +47,7 @@
 									<ul class="d-flex align-items-center">
 										<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
 										<li class="post-author"><i class="fa fa-user"></i>By <a href="#">{{ post.author }}</a> </li>
+										<li class="post-date"><i class="fa fa-eye"></i>Views: {% get_hit_count for post %}</li>
 										{% with comments.count as total_comments %}
 										<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">
 												{{ total_comments }} Comment{{ total_comments|pluralize }} </a></li>

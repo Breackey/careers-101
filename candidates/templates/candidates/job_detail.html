@@ -65,59 +65,63 @@
                             </div>
 						</div>
 						<div class="col-lg-8">
-							<div class="job-info-box">
-								<h3 class="m-t0 m-b10 font-weight-700 title-head">
-									<a href="#" class="text-secondry m-r30">{{job.title}}</a>
-								</h3>
-								<ul class="job-info">
-									<li><strong>Job Type</strong> {{job.job_type}}</li>
-									<li><strong>Deadline:</strong> {{job.deadline}}</li>
-									<li><i class="ti-location-pin text-black m-r5"></i> {{job.location}} </li>
-								</ul><br/>
-								<h5 class="font-weight-600">Job Description</h5>
-								<div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-								<p>{{ job.description|safe }}</p>
+							<div class="card card-signin my-2">
+								<div class="job-info-box">
+									<h3 class="m-t0 m-b10 font-weight-700 title-head">
+										<a href="#" class="text-secondry m-r30">{{job.title}}</a>
+									</h3>
+									<ul class="job-info">
+										<li><strong>Job Type</strong> {{job.job_type}}</li>
+										<li><strong>Deadline:</strong> {{job.deadline}}</li>
+										<li><i class="ti-location-pin text-black m-r5"></i> {{job.location}} </li>
+									</ul><br/>
+									<h5 class="font-weight-600">Job Description</h5>
+									<div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
+									<p>{{ job.description|safe }}</p>
 
-								<hr my-2 />
+									<hr my-2 />
 
-								<h5 class="font-weight-600">Skills Required</h5>
-								<div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-								<p>{{job.skills_req}}</p>
-								 
-								<hr my-2 />
+									<h5 class="font-weight-600">Skills Required</h5>
+									<div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
+									<p>{{job.skills_req}}</p>
+									
+									<hr my-2 />
 
-								{% if job.link %}
-									<a class="btn btn-warning btn-lg" href="{{job.link}}"
-										><b>Apply On Company's Website</b></a
-									>
-								{% else %} {% if not apply_button %} {% if profile.resume %}
+									{% if job.link %}
+										<a class="btn btn-warning btn-lg" href="{{job.link}}"
+											><b>Apply On Company's Website</b></a
+										>
+									{% else %} {% if not apply_button %} {% if profile.resume %}
+									<a
+									class="btn btn-warning btn-lg"
+									href="{% url 'apply-job' job.slug %}"
+									><b>Apply Now</b></a
+								>
+								{%else %}
+								<a class="btn btn-danger btn-lg" href="{% url 'edit-profile' %}"
+									><b>Add Resume to apply!</b></a
+								>
+								{%endif%} {% else %}
+								<a class="btn btn-success btn-lg" href="{% url 'applied-jobs' %}"
+									><b>Applied!</b></a
+								>
+								{% endif %} {%endif%} {% if not save_button %}
 								<a
-								class="btn btn-warning btn-lg"
-								href="{% url 'apply-job' job.slug %}"
-								><b>Apply Now</b></a
-							  >
-							  {%else %}
-							  <a class="btn btn-danger btn-lg" href="{% url 'edit-profile' %}"
-								><b>Add Resume to apply!</b></a
-							  >
-							  {%endif%} {% else %}
-							  <a class="btn btn-success btn-lg" href="{% url 'applied-jobs' %}"
-								><b>Applied!</b></a
-							  >
-							  {% endif %} {%endif%} {% if not save_button %}
-							  <a
-								class="btn btn-primary btn-lg ml-2"
-								href="{% url 'save-job' job.slug %}"
-								><b>Save</b></a
-							  >
-							  {% else %}
-							  <a
-								class="btn btn-danger btn-lg ml-2"
-								href="{% url 'remove-job' job.slug %}"
-								><b>Remove</b></a
-							  >
-							  {% endif %}
- 
+									class="btn btn-primary btn-lg ml-2"
+									href="{% url 'save-job' job.slug %}"
+									><b>Save</b></a
+								>
+								{% else %}
+								<a
+									class="btn btn-danger btn-lg ml-2"
+									href="{% url 'remove-job' job.slug %}"
+									><b>Remove</b></a
+								>
+								{% endif %}
+	
+								</div>
+						
+						
 							</div>
 						</div>
 					</div>

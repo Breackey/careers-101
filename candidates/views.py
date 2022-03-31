@@ -20,7 +20,7 @@ from blog.models import Post
 
 def home(request):
     posts = Post.objects.all()
-    jobs = Job.objects.all()
+    jobs = Job.objects.all()[:4]
     trendings = Job.objects.filter(date_posted__month=timezone.now().month)
     user_count =  User.objects.count()
     context = {

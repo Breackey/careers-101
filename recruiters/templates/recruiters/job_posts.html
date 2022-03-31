@@ -59,11 +59,11 @@
                                 </td>
                                 <td>
                                     <a href="{% url 'add-job-detail' job.slug %}" class="btn btn-success">
-                                        <i class="fa fa-times-circle-o"></i>View
+                                        <i class="fa fa-times-circle-o"></i> View
                                     </a>
                                      | 
                                     <a href="{% url 'edit-job-post' job.slug %}" class="btn btn-success">
-                                        <i class="fa fa-edit"></i>Edit
+                                        <i class="fa fa-edit"></i> Edit
                                     </a>
                                      | 
 
@@ -72,7 +72,7 @@
                                         <a href="{% url 'job-mark-filled' job.id %}"
                                            class="btn btn-outline-white-secondary">
                                             <i class="fa fa-check-circle-o"></i>
-                                            <span class="hidden-xs hidden-sm">Filled</span>
+                                            <span class="hidden-xs hidden-sm"> Filled</span>
                                         </a><br>
                                     {% else %}
                                         <a href="{% url 'job-mark-filled' job.id %}"

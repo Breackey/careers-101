@@ -72,12 +72,13 @@
 								<ul>
                                    
 									<li><h5 class="m-a0">Share Post</h5></li>
-									<li><a href="#" class="site-button facebook button-sm"><i class="fa fa-facebook"></i> Facebook</a></li>
+									<li><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.careers101.co.ke{{ request.get_full_path|urlencode }}" class="site-button facebook button-sm"><i class="fa fa-facebook"></i> Facebook</a></li>
 									<li><a href="{% url 'blog:post_share' post.id %}" class="site-button google-plus button-sm"><i class="fa fa-google-plus"></i> Google Plus</a></li>
-									<li><a href="#" class="site-button linkedin button-sm"><i class="fa fa-linkedin"></i> Linkedin</a></li>
+									<li><a href="http://www.linkedin.com/shareArticle?url=https://www.careers101.co.ke{{ request.get_full_path|urlencode }}&{{ post.title }}&summary={{ post.content}}&source=https://www.careers101.co.ke" class="site-button linkedin button-sm"><i class="fa fa-linkedin"></i> Linkedin</a></li>
 									<li><a href="#" class="site-button instagram button-sm"><i class="fa fa-instagram"></i> Instagram</a></li>
 									<li><a href="#" class="site-button twitter button-sm"><i class="fa fa-twitter"></i> Twitter</a></li>
 									<li><a href="#" class="site-button whatsapp button-sm"><i class="fa fa-whatsapp"></i> Whatsapp</a></li>
+                                    
 								</ul>
 							</div>
                         </div>
@@ -94,7 +95,7 @@
                                         {% for comment in comments %}
                                         <li class="comment">
                                             <div class="comment-body">
-                                                <div class="comment-author vcard"> <img  class="avatar photo" src="images/testimonials/pic1.jpg" alt=""> <cite class="fn">Comment {{ forloop.counter }} by {{ comment.name }}</h4></cite> <span class="says">says:</span> </div>
+                                                <div class="comment-author vcard"> <img  class="avatar photo" src="{% static 'images/blog/blog-user.png' %}" alt=""> <cite class="fn">Comment {{ forloop.counter }} by {{ comment.name }}</h4></cite> <span class="says">says:</span> </div>
                                                 <div class="comment-meta"> <a href="#">{{ comment.created }}</a> </div>
                                                 <p>{{ comment.body|linebreaks }}</p>
                                                 <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>

@@ -35,7 +35,7 @@ class Job(models.Model):
     skills_req = models.CharField(max_length=200)
     job_type = models.CharField(max_length=30, choices=CHOICES, default='Full Time', null=True)
     link = models.URLField(null=True, blank=True)
-    slug = AutoSlugField(populate_from='title', unique=True, null=True)
+    slug = AutoSlugField(populate_from='title', unique=True, null=True, max_length=255)
     date_posted = models.DateTimeField(default=timezone.now)
     deadline = models.DateField(null=True, blank=True)
     filled = models.BooleanField(default=False)

@@ -30,6 +30,7 @@ class Post(models.Model):
     published = PublishedManager() # Our custom manager.
     tags = TaggableManager()
 
+
     def get_absolute_url(self):
         return reverse('blog:post_detail',
                        args=[self.publish.year,

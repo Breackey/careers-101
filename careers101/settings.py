@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'taggit',
     'django_summernote',
     'django_social_share',
+    'user_visit',
+    
     
     'django.contrib.sites',
     'allauth',
@@ -83,6 +85,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'user_visit.middleware.UserVisitMiddleware',
     
 ]
 
@@ -280,3 +283,14 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = None
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+
+
+if DEBUG: 
+    SECURE_SSL_REDIRECT = False
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
+else:
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
