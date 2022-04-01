@@ -4,6 +4,10 @@ from django.contrib.auth import views as auth_views
 from users import views
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import PostSitemap
+
+sitemaps= {'posts': PostSitemap}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +27,11 @@ urlpatterns = [
     path('newsletter/', include('newsletter.urls')),
     path('control-panel/', include('control_panel.urls')),
     path("summernote/", include("django_summernote.urls")),
+
+ # SEO
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+						name='django.contrib.sitemaps.views.sitemap')
+
 ]
 
 if settings.DEBUG:

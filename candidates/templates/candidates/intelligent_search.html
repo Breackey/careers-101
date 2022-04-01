@@ -3,8 +3,9 @@
 <div>
 <h3 class="text-center"><b>Most Relevant Jobs for You</b></h3><br>
 {%if counter %}
-  <div class="row">
-    {% for job,common, job_skill in jobs %}
+ 
+
+
     <!-- Jobs Start -->
     <div class="container-xxl py-5">
       <div class="container">
@@ -68,6 +69,7 @@
                           >You have <b class="text-success">{{ common }} </b>out of <b class="text-danger">{{ job_skill }}</b> skills required for this job.</span
                         >
                       </div>
+                      <br/>
                       
                   {% comment %} 
                   <div id="tab-2" class="tab-pane fade show p-0">
@@ -315,13 +317,12 @@
       </div>
     </div>
     <!-- Jobs End -->
-        
+    
          
         
       </div>
     </div>
-    {% endfor %}
-  </div>
+ 
 </div>
 <br />
 {% else %}
