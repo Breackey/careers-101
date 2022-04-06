@@ -1,644 +1,367 @@
 {% extends "users/layout.html" %} 
 {% load static %}
 {% load blog_tags %}
- {% block content %}
+{% block content %}
 <br /><br />
 <div class="page-wraper">
 
     <!-- Content -->
-    <div class="page-content">
-
-											
- 		<!-- Section Banner -->
-		<div class="dez-bnr-inr dez-bnr-inr-md overlay-black-dark" style="background-image:url(static/images/main-slider/banner2.jpg);">
-            <div class="container">
-                <div class="dez-bnr-inr-entry align-m text-white">
-					<div class=" job-search-form">
-						<h2 class="text-center">The Easiest Way to Get Your New Job</h2>
-						<h3>Find Jobs, Employment & Career Opportunities</h3>
-						<form id="job-main-form"  class="form-signin mt-4" method="get" action="{% url 'job-search-list' %}">
-							<div class="input-group">
-								<input type="text" class="form-control"   name="p" placeholder="Enter Job Title, Skills, Type or Company">
-								<input type="text" class="form-control"   name="q" placeholder="Enter Job Location">
-								<div class="input-group-prepend">
-									<button class="site-button" type="submit" >Search</button>
-								</div>
-							</div>
-						</form>
-						</div>
-            <div class="row">
-
+  <div class="page-content">
+		<!-- Section Banner -->
+		<div class="dez-bnr-inr dez-bnr-inr-md overlay-black-dark" style="background-image:url(static/images/main-slider/slide1.jpg);">
+      <div class="container">
+          <div class="dez-bnr-inr-entry align-m text-white">
+    <div class=" job-search-form">
+      <h2 class="text-center">The Easiest Way to Get Your New Job</h2>
+      <h3>Find Jobs, Employment & Career Opportunities</h3>
+      <form>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Job Title, Keywords Or Company Name">
+          <input type="text" class="form-control" placeholder="City, Province Or Region">
+          <div class="input-group-prepend">
+            <button class="site-button">Search</button>
+          </div>
+        </div>
+      </form>
     </div>
-						<br/>
-            
-
-<div class="section-head d-flex head-counter clearfix">
+  </div>
+      </div>
+  </div>
+<!-- Section Banner END -->
+        <!-- About Us -->
+		<div class="section-full job-categories content-inner-2 bg-white" style="background-image:url(static/images/pattern/pic1.html);">
+			<div class="container">
+				<div class="section-head d-flex head-counter clearfix">
 					<div class="mr-auto">
 						<h2 class="m-b5">Popular Categories</h2>
+						<h6 class="fw3">20+ Catetories work wating for you</h6>
 					</div>
 					<div class="head-counter-bx">
 						<h2 class="m-b5 counter">{{ job_count.count}}</h2>
-						<h6 class="fw3" style="color:white; font-weight: bold;">Jobs Posted</h6>
+						<h6 class="fw3">Jobs Posted</h6>
 					</div>
 					<div class="head-counter-bx">
 						<h2 class="m-b5 counter">{{ trendings.count}}</h2>
-						<h6 class="fw3" style="color:white; font-weight: bold;">Trending Jobs</h6>
+						<h6 class="fw3">Trending Jobs</h6>
 					</div>
-				{% comment %} 	<div class="head-counter-bx">
+					{% comment %} 	<div class="head-counter-bx">
 						<h2 class="m-b5 counter">{{ user_count }}</h2>
 						<h6 class="fw3"style="color:white; font-weight: bold;">Registered Users</h6>
 					</div> {% endcomment %}
- 
-
-			
-      <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
- 
-        {% if user.is_authenticcated %}
-          <div class="col-10 col-lg-8">
-            <a href="{% url 'job-search-list' %}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
-            <a href="{% url 'add-job' %}" class="btn btn-success py-md-3 px-md-5 animated slideInRight">Find A Talent</a>
-          </div>
-
-        {% else %}
-          <div class="col-10 col-lg-8">
-            
-            <a href="{% url 'job-search-list' %}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
-            <a href="{% url 'detail-recruiters' %}" class="btn btn-success py-md-3 px-md-5 animated slideInRight">Find A Talent</a>
-          </div>
-        {% endif %}
-      </div>
-
-    </div>
+				</div>
+				<div class="row sp20">
+					<div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+						<div class="card card-signin my-5">
+						  <div class="card-body">
+							<h5 class="card-title text-center">
+							  <b>Some Popular Search terms:</b><br />
+							</h5>
+							<hr my-2 />
+				
+							<form class="form-signin">
+							  <div class="form-group">
+								<a
+								  class="btn btn-outline-primary mr-2 mt-2"
+								  href="/job/?p=accounting&q="
+								  >Accounting</a
+								>
+				
+								<a
+								class="btn btn-outline-primary mr-2 mt-2"
+								href="/job/?p=auditing&q="
+								>Auditing</a
+							  >
+				
+							  <a
+								  class="btn btn-outline-primary mr-2 mt-2"
+								  href="/job/?p=finance&q="
+								  >Finance</a
+								>
+				
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=admin&q="
+								  >Admin</a
+								>
+								<a
+								  class="btn btn-outline-danger mr-2 mt-2"
+								  href="/job/?p=agriculture&q="
+								  >Agriculture </a
+								>
+								<a class="btn btn-outline-dark mr-2 mt-2" href="/job/?p=design&q="
+								  >Design</a
+								>
+								<a
+								  class="btn btn-outline-danger mr-2 mt-2"
+								  href="/job/?p=architecture&q="
+								  >Architecture</a
+								>
+								<a
+								class="btn btn-outline-primary mr-2 mt-2"
+								href="/job/?p=business&q="
+								>Business</a
+							  >
+								<a
+								class="btn btn-outline-secondary mr-2 mt-2"
+								href="/job/?p=catering&q="
+								>Catering</a
+							  >
+							  
+								<a
+								  class="btn btn-outline-secondary mr-2 mt-2"
+								  href="/job/?p=consulting&q="
+								  >Consulting</a
+								>
+								
+								
+								<a
+								  class="btn btn-outline-success mr-2 mt-2"
+								  href="/job/?p=transport&q="
+								  >Transport</a
+								>
+								<a
+								  class="btn btn-outline-primary mr-2 mt-2"
+								  href="/job/?p=software&q="
+								  >Software</a
+								>
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=management&q="
+								  >Management</a
+								>
+								
+								<a
+								  class="btn btn-outline-danger mr-2 mt-2"
+								  href="/job/?p=hospitality&q="
+								  >Hospitality</a
+								>
+								<a
+								  class="btn btn-outline-success mr-2 mt-2"
+								  href="/job/?p=human+resource&q="
+								  >Human Resource</a
+								>
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=legal&q="
+								  >Legal</a
+								>
+								
+							   
+								<a
+								  class="btn btn-outline-danger mr-2 mt-2"
+								  href="/job/?p=medicine&q="
+								  >Medicine</a
+								>
+								<a
+								  class="btn btn-outline-secondary mr-2 mt-2"
+								  href="/job/?p=project&q="
+								  >Project</a
+								>
+								<a class="btn btn-outline-dark mr-2 mt-2" href="/job/?p=quality+control&q="
+								  >Quality Control</a
+								>
+								<a
+								  class="btn btn-outline-danger mr-2 mt-2"
+								  href="/job/?p=teaching&q="
+								  >Teaching</a
+								>
+								<a
+								class="btn btn-outline-info mr-2 mt-2"
+								href="/job/?p=sales&q="
+								>Sales</a
+							  >
+				
+								<a
+								  class="btn btn-outline-success mr-2 mt-2"
+								  href="/job/?p=procurement&q="
+								  >Procurement</a
+								>
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=trade&q="
+								  >Trade</a
+								>
+								<a
+								class="btn btn-outline-info mr-2 mt-2"
+								href="/job/?p=beauty&q="
+								>Beauty</a
+							  >
+							  
+							  <a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=government&q="
+								  >Government</a
+								>
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=engineering&q="
+								  >Engineering</a
+								>
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=security&q="
+								  >Security</a
+								>
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=energys&q="
+								  >Energy</a
+								>
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=labour&q="
+								  >Labour</a
+								>
+								<a
+								  class="btn btn-outline-info mr-2 mt-2"
+								  href="/job/?p=media&q="
+								  >Media</a
+								>
+							  
+				
+							  </div>
+							</form>
+						  </div>
+						</div>
+					  </div>
+				</div>
+			</div>
+		</div>
+		<!-- About Us END -->
+		<!-- Call To Action -->
+		<div class="section-full content-inner-2 call-to-action overlay-black-dark text-white text-center bg-img-fix" style="background-image: url(static/images/background/bg4.jpg);">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<h2 class="m-b10">We Help You Get The Best Job And Find The Best Talent Out There!</h2>
+						<p class="mb-0">Get connected with jobs from all over the world. Create a profile and immediately get noticed by the right recruiters. Be the Best Candidate out There! </p>
+              			<p class="mb-0">Hiring can be a tedious task, let us make it easy for you. Post unlimited job posts you want for free and search for the best candidate for the job! </p>
+						<a href="{% url 'account_login' %}" class="site-button m-t20 outline outline-2 radius-xl">Join Us!</a>
 					</div>
 				</div>
-            </div>
- 		<!-- Section Banner END -->
-<div style="background-color: white">
-<div class="container">
- 
-  <div class="container mt-3">
-    
-    <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
-        <div class="card card-signin my-5">
-          <div class="card-body">
-            <h5 class="card-title text-center">
-              <b>Some Popular Search terms:</b><br />
-            </h5>
-            <hr my-2 />
-
-            <form class="form-signin">
-              <div class="form-group">
-                <a
-                  class="btn btn-outline-primary mr-2 mt-2"
-                  href="/job/?p=accounting&q="
-                  >Accounting</a
-                >
-
-                <a
-                class="btn btn-outline-primary mr-2 mt-2"
-                href="/job/?p=auditing&q="
-                >Auditing</a
-              >
-
-              <a
-                  class="btn btn-outline-primary mr-2 mt-2"
-                  href="/job/?p=finance&q="
-                  >Finance</a
-                >
-
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=admin&q="
-                  >Admin</a
-                >
-                <a
-                  class="btn btn-outline-danger mr-2 mt-2"
-                  href="/job/?p=agriculture&q="
-                  >Agriculture </a
-                >
-                <a class="btn btn-outline-dark mr-2 mt-2" href="/job/?p=design&q="
-                  >Design</a
-                >
-                <a
-                  class="btn btn-outline-danger mr-2 mt-2"
-                  href="/job/?p=architecture&q="
-                  >Architecture</a
-                >
-                <a
-                class="btn btn-outline-primary mr-2 mt-2"
-                href="/job/?p=business&q="
-                >Business</a
-              >
-                <a
-                class="btn btn-outline-secondary mr-2 mt-2"
-                href="/job/?p=catering&q="
-                >Catering</a
-              >
-              
-                <a
-                  class="btn btn-outline-secondary mr-2 mt-2"
-                  href="/job/?p=consulting&q="
-                  >Consulting</a
-                >
-                
-                
-                <a
-                  class="btn btn-outline-success mr-2 mt-2"
-                  href="/job/?p=transport&q="
-                  >Transport</a
-                >
-                <a
-                  class="btn btn-outline-primary mr-2 mt-2"
-                  href="/job/?p=software&q="
-                  >Software</a
-                >
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=management&q="
-                  >Management</a
-                >
-                
-                <a
-                  class="btn btn-outline-danger mr-2 mt-2"
-                  href="/job/?p=hospitality&q="
-                  >Hospitality</a
-                >
-                <a
-                  class="btn btn-outline-success mr-2 mt-2"
-                  href="/job/?p=human+resource&q="
-                  >Human Resource</a
-                >
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=legal&q="
-                  >Legal</a
-                >
-                
-               
-                <a
-                  class="btn btn-outline-danger mr-2 mt-2"
-                  href="/job/?p=medicine&q="
-                  >Medicine</a
-                >
-                <a
-                  class="btn btn-outline-secondary mr-2 mt-2"
-                  href="/job/?p=project&q="
-                  >Project</a
-                >
-                <a class="btn btn-outline-dark mr-2 mt-2" href="/job/?p=quality+control&q="
-                  >Quality Control</a
-                >
-                <a
-                  class="btn btn-outline-danger mr-2 mt-2"
-                  href="/job/?p=teaching&q="
-                  >Teaching</a
-                >
-                <a
-                class="btn btn-outline-info mr-2 mt-2"
-                href="/job/?p=sales&q="
-                >Sales</a
-              >
-
-                <a
-                  class="btn btn-outline-success mr-2 mt-2"
-                  href="/job/?p=procurement&q="
-                  >Procurement</a
-                >
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=trade&q="
-                  >Trade</a
-                >
-                <a
-                class="btn btn-outline-info mr-2 mt-2"
-                href="/job/?p=beauty&q="
-                >Beauty</a
-              >
-              
-            <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=government&q="
-                  >Government</a
-                >
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=engineering&q="
-                  >Engineering</a
-                >
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=security&q="
-                  >Security</a
-                >
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=energys&q="
-                  >Energy</a
-                >
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=labour&q="
-                  >Labour</a
-                >
-                <a
-                  class="btn btn-outline-info mr-2 mt-2"
-                  href="/job/?p=media&q="
-                  >Media</a
-                >
-              
-
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-
-
-  
- <!-- About Start -->
- <div class="container-xxl py-5">
-  <div class="container">
-      <div class="row g-5 align-items-center">
-          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-              <div class="row g-0 about-bg rounded overflow-hidden">
-                  <div class="col-6 text-start">
-                      <img class="img-fluid" src="{% static 'images/about-us.jpg' %}">
-                  </div>
-                  <div class="col-6 text-start">
-                      <img class="img-fluid" src="{% static 'images/about-us2.jpeg' %}" style="width: 85%; margin-top: 15%;">
-                  </div>
-                  <div class="col-6 text-end">
-                      <img class="img-fluid" src="{% static 'images/about-us3.jpg' %}" style="width: 85%;">
-                  </div>
-                  <div class="col-6 text-end">
-                      <img class="img-fluid w-100" src="{% static 'images/about-us4.jpg' %}">
-                  </div>
-                   
-              </div>
-          </div>
-          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-              <h1 class="mb-4">We Help You Get The Best Job And Find The Best Talent Out There!</h1>
-              <p class="mb-4">Get connected with jobs from all over the world. Create a profile and immediately get noticed by the right recruiters. Be the Best Candidate out There! </p>
-              <p class="mb-4">Hiring can be a tedious task, let us make it easy for you. Post unlimited job posts you want for free and search for the best candidate for the job! </p>
-              <p><i class="fa fa-check text-primary me-3"></i>Become visible to employers with your online CV!</p>
-              <p><i class="fa fa-check text-primary me-3"></i>1,000+ monthly job vacancies!</p>
-              <p><i class="fa fa-check text-primary me-3"></i>Unlimited free job posts!</p>
-              <p><i class="fa fa-check text-primary me-3"></i>Get recommended candidates for your job!</p>
-              <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'account_login' %}"><b>Join Us!</b></a>
-          </div>
-      </div>
-  </div>
-</div>
-<!-- About End -->
-<hr/>
-      <!-- Jobs Start -->
-      <div class="container-xxl py-5">
-          <div class="container">
-              <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>
-              <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
-                  {% comment %} <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                      <li class="nav-item">
-                          <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                              <h6 class="mt-n1 mb-0">Featured</h6>
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
-                              <h6 class="mt-n1 mb-0">Full Time</h6>
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
-                              <h6 class="mt-n1 mb-0">Part Time</h6>
-                          </a>
-                      </li>
-                  </ul> {% endcomment %}
-                  <hr my-2 />
-                  <div class="tab-content">
-                      <div id="tab-1" class="tab-pane fade show p-0 active">
-                        {% for job in jobs %}  
-                        <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="{% static 'images/logo/theicon.PNG' %}" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                        <h5 class="mb-3">{{job.title}}</h5>
-                                          <span class="text-truncate me-3"><i class="mg5r fa fa-briefcase"></i> {{job.company}} | </span>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker mg5r"></i> {{job.location}} | </span>
-                                          <span class="text-truncate me-0"><i class="mg5r fa fa-envelope"></i> {{job.job_type}}</span>
-                                          
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                        {% if not save_button %}
-                                        <a
-                                        class="btn btn-success"
-                                        href="{% url 'save-job' job.slug %}"
-                                        ><b>Save</b></a
-                                        >
-                                        {% else %}
-                                        <a
-                                        class="btn btn-danger"
-                                        href="{% url 'remove-job' job.slug %}"
-                                        ><b>Remove</b></a
-                                        >
-                                        {% endif %}   |  
-                                          <a class="btn btn-primary" href="{% url 'job-detail' job.slug %}">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i> Posted {{job.date_posted|timesince}} ago</small>
-                                  </div>
-                              </div>
-                          </div>
-                          
-                      {% comment %} <div id="tab-2" class="tab-pane fade show p-0">
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-1.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Software Engineer</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-2.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Marketing Manager</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-3.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Product Designer</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-4.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Creative Director</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-5.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Wordpress Developer</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <a class="btn btn-primary py-3 px-5" href="">Browse More Jobs</a>
-                      </div>
-                      <div id="tab-3" class="tab-pane fade show p-0">
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-1.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Software Engineer</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-2.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Marketing Manager</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-3.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Product Designer</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-4.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Creative Director</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="job-item p-4 mb-4">
-                              <div class="row g-4">
-                                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                      <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-5.jpg" alt="" style="width: 80px; height: 80px;">
-                                      <div class="text-start ps-4">
-                                          <h5 class="mb-3">Wordpress Developer</h5>
-                                          <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                          <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                          <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                      <div class="d-flex mb-3">
-                                          <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                          <a class="btn btn-primary" href="">Apply Now</a>
-                                      </div>
-                                      <small class="text-truncate"><i class="fa fa-calendar text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <a class="btn btn-primary py-3 px-5" href="">Browse More Jobs</a>
-                      </div> {% endcomment %}
-                      {% endfor %}
-                      <a class="btn btn-primary py-3 px-5" href="{% url 'job-search-list' %}">Browse More Jobs</a>
-                        </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- Jobs End -->
-<hr/>
-  <div class="row">
-    <div class="col-sm-10 md-8 lg-6 mx-auto">
-      <div style="background: transparent !important" class="jumbotron">
-      
-       	<div class="section-head text-black text-center">
-  <h1 class="display-5 text-center">
-          Career Tips
-        </h1>
-        <hr my-2 />
-        	<p>Read our blogs to get some career hacks to get you moving!</p>
+			</div>
+		</div>
+		<!-- Call To Action END -->
+		<!-- Our Job -->
+		<div class="section-full bg-white content-inner-2">
+			<div class="container">
+				<div class="d-flex job-title-bx section-head">
+					<div class="mr-auto">
+						<h2 class="m-b5">Recent Jobs</h2>
+						<h6 class="fw4 m-b0">20+ Recently Added Jobs</h5>
+					</div>
+					<div class="align-self-end text-centery">
+						<a href="{% url 'job-search-list' %}" class="site-button button-sm">Browse All Jobs <i class="fa fa-long-arrow-right"></i></a>
+					</div>
 				</div>
-				<div class="blog-carousel owl-carousel owl-btn-center-lr owl-btn-3 owl-theme owl-btn-center-lr owl-btn-1">
-				{% for post in posts %} 
-				 
-					<div class="item">
-						<div class="blog-post blog-grid blog-style-1">
- 							<div class="dez-info">
-								 <div class="dez-post-meta">
-									<ul class="d-flex align-items-center">
-										<li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
-										<li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">5k</a> </li>
-									</ul>
+				<div class="row">
+					<div class="col-lg-9">
+						<ul class="post-job-bx">
+							{% for job in jobs %} 
+							<li>
+								<a href="{% url 'job-detail' job.slug %}">
+									<div class="d-flex m-b30">
+										<div class="job-post-company">
+											<span><img src="{% static 'images/logo/theicon.PNG' %}"/></span>
+										</div>
+										<div class="job-post-info">
+											<h4>{{job.title}}</h4>
+											<ul>
+												<li><i class="fa fa-map-marker"></i> {{job.location}}</li>
+												<li><i class="fa fa-bookmark-o"></i> {{job.job_type}}</li>
+												<li><i class="fa fa-clock-o"></i> Published {{job.date_posted|timesince}} ago</li>
+											</ul>
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="job-time mr-auto">
+											<span>{{job.company}}</span>
+										</div>
+										<div class="salary-bx">
+											<span><i class="fa fa-clock-o"></i> Deadline: {{job.date_posted|date:"F d, Y"}}</span>
+										</div>
+									</div>
+									<span class="post-like fa fa-heart-o"><a href="{% url 'save-job' job.slug %}"></a></span>
+								</a>
+							</li>
+						
+							{% endfor %}	
+						</ul>
+						<div class="m-t30">
+							
+                      		<a class="btn btn-primary py-3 px-5" href="{% url 'job-search-list' %}">Browse More Jobs</a>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="sticky-top">
+							<div class="candidates-are-sys m-b30">
+								<div class="candidates-bx">
+									<div class="testimonial-text">
+                    <h4>We Got Your Dream Job Covered!</h4>
+                    <p>Complete your profile and getnoticed with employes fast!</p>
+                    									
+                  </div>
+									<div class="testimonial-detail"><a href="{% url 'account_login' %}" class="site-button">Create Account</a>
+                  </div>
 								</div>
-								<div class="dez-post-title ">
-									<h5 class="post-title font-20"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
-								</div>
-								<div class="dez-post-text">
-										<p>{{ post.content|markdown|truncatewords_html:30 }}</p>
-								</div>
-								<div class="dez-post-readmore blog-share"> 
-									<a href="{{ post.get_absolute_url }}" title="READ MORE" rel="bookmark" class="site-button outline">READ MORE</a>
+							</div>
+							<div class="quote-bx">
+								<div class="quote-info">
+									<h4>Want to be the first to apply for jobs!</h4>
+									<p>Subscribe to our newsletter to get jobs and career tips as fast as they come!</p>
+									<a href="{% url "newsletter:subscribe" %}" class="site-button">Subscribe!</a>
 								</div>
 							</div>
 						</div>
 					</div>
-					{% endfor %}
-				 
 				</div>
-      </div>
-    </div>
-  </div>
-  <hr/>
-  <div class="row">
-    <div class="col-sm-10 md-8 lg-6 mx-auto">
-      <div style="background: transparent !important" class="jumbotron">
-        <h1 class="display-5 text-center">Want to be the first to apply for jobs!</h1>
-        <p class="lead text-center">
-          Subscribe to our newsletter to get jobs and career tips as fast as they come!
-        </p>
-        <p class="lead text-center">
-          <a
-            class="btn btn-primary btn-lg"
-            href="{% url "newsletter:subscribe" %}"
-            role="button"
-            >Subscribe!</a
-          >
-        </p>
-      </div>
-    </div>
-  </div>
- 
+			</div>
+		</div>
+		<!-- Our Job END -->	
+
+		<!-- Our Latest Blog -->
+		<div class="section-full content-inner-2 overlay-white-middle">
+			<div class="container">
+				<div class="section-head text-black text-center">
+					<h2 class="text-uppercase m-b0">Career Tips</h2>
+					<p>Read our blogs to get some career hacks to get you moving!</p>
+				</div>
+				<div class="blog-carousel owl-carousel owl-btn-center-lr owl-btn-3 owl-theme owl-btn-center-lr owl-btn-1">
+          {% for post in posts %} 
+          <div class="item">
+            <div class="blog-post blog-grid blog-style-1">
+               <div class="dez-info">
+                 <div class="dez-post-meta">
+                  <ul class="d-flex align-items-center">
+                    <li class="post-date"><i class="fa fa-calendar"></i>{{ post.publish }}</li>
+                      {% with comments.count as total_comments %}
+                    <li class="post-comment"><i class="fa fa-comments-o"></i><a href="#">
+                      {{ total_comments }} Comment{{ total_comments|pluralize }} </a></li>
+                      {% endwith %} 
+                  </ul>
+                </div>
+                <div class="dez-post-title ">
+                  <h5 class="post-title font-20"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+                </div>
+                <div class="dez-post-text">
+                    <p>{{ post.content|markdown|truncatewords_html:30 }}</p>
+                </div>
+                <div class="dez-post-readmore blog-share"> 
+                  <a href="{{ post.get_absolute_url }}" title="READ MORE" rel="bookmark" class="site-button outline">READ MORE</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+				</div>
+			</div>
+		</div>
+		<!-- Our Latest Blog -->
+
+	</div>
+
+	
 </div>
 
-
-  {% endblock content %}
-</div>
+{% endblock %}
+	

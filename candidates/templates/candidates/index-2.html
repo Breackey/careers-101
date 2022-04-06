@@ -1,63 +1,68 @@
 {% extends "users/layout.html" %} {% load static %} {% block content %}
-
-
+<br />
     <!-- Content -->
     <div class="page-content bg-white">
         <!-- inner page banner -->
         <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(images/banner/bnr1.jpg);">
             <div class="container">
                 <div class="dez-bnr-inr-entry">
-                    <h1 class="text-white">Browse Jobs</h1>
+                    <h1 class="text-white">Search Candidates</h1>
 					<!-- Breadcrumb row -->
 					<div class="breadcrumb-row">
 						<ul class="list-inline">
 							<li><a href="#">Home</a></li>
-							<li>Browse Jobs</li>
+							<li>Search Candidates</li>
 						</ul>
 					</div>
 					<!-- Breadcrumb row END -->
-              </div>
+                </div>
             </div>
         </div>
         <!-- inner page banner END -->
-        <!-- contact area -->
-        <div class="content-block">
-			<!-- Browse Jobs -->
-			<div class="section-full bg-white browse-job content-inner-2">
-		 
-					
-					{%if jobs %}
-
+		<div class="content-block">
+            <div class="section-full bg-white browse-job content-inner-2">
 				<div class="container">
+					{% if profiles %}
 					<div class="row">
 						<div class="col-xl-9 col-lg-8">
-							<h5 class="widget-title font-weight-700 text-uppercase">All Jobs</h5>
+							<h5 class="widget-title font-weight-700 text-uppercase">All Candidates</h5>
 							<ul class="post-job-bx">
-								{% for job in jobs %} 
+								{% for profile in profiles %} 
 								<li>
-									<a href="{% url 'job-detail' job.slug %}">
+									<a href="{% url 'profile-view' profile.slug %}">
 										<div class="d-flex m-b30">
 											<div class="job-post-company">
 												<span><img src="{% static 'images/logo/theicon.PNG' %}"/></span>
 											</div>
 											<div class="job-post-info">
-												<h4>{{job.title}}</h4>
+												{% if profile.full_name %}
+												<h4>{{profile.full_name}}</h4>
+												{% else %}
+												<h4 class="text-dark">
+													{{profile.user.username}}
+												  </h4>
+												  {% endif %}
 												<ul>
-													<li><i class="fa fa-map-marker"></i> {{job.location}}</li>
-													<li><i class="fa fa-bookmark-o"></i> {{job.job_type}}</li>
-													<li><i class="fa fa-clock-o"></i> Published {{job.date_posted|timesince}} ago</li>
+													<li><i class="fa fa-map-marker"></i> {% if profile.location %}
+														{{profile.location}} {% else %} {{profile.country.name}} {% endif %}</li>
+													<li><i class="fa fa-bookmark-o"></i> {{profile.job_type}}</li>
+													<li><i class="fa fa-clock-o"></i> {{profile.user.email}}</li>
 												</ul>
 											</div>
 										</div>
 										<div class="d-flex">
 											<div class="job-time mr-auto">
-												<span>{{job.company}}</span>
+												<span>{{profile.skills}}</span>
 											</div>
 											<div class="salary-bx">
-												<span>Deadline: {{job.date_posted|date:"F d, Y"}}</span>
+												<span>{% if profile.resume %}
+													<a href="{{ profile.resume.url }}">Click to view resume</a>
+													{% else %}
+													<p>No resume available.</p>
+													{% endif %}
+												</span>
 											</div>
 										</div>
-										<span class="post-like fa fa-heart-o"></span>
 									</a>
 								</li>
 								{% endfor %}
@@ -66,30 +71,30 @@
 								<br />
                     <div class="pagination">
                       <span class="step-links">
-                        {% if jobs.has_previous %}
+                        {% if profiles.has_previous %}
                         <a
                           class="btn btn-info"
-                          href="?page=1{% if request.GET.p %}&p={{ request.GET.p }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                          href="?page=1{% if request.GET.r %}&p={{ request.GET.r }}{% endif %}{% if request.GET.s %}&q={{ request.GET.s }}{% endif %}"
                           >&laquo; First</a
                         >
                         <a
                           class="btn btn-danger"
-                          href="?page={{ jobs.previous_page_number }}{% if request.GET.p %}&p={{ request.GET.p }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                          href="?page={{ profiles.previous_page_number }}{% if request.GET.r %}&p={{ request.GET.r }}{% endif %}{% if request.GET.s %}&q={{ request.GET.s }}{% endif %}"
                           >Prev</a
                         >
                         {% endif %}
                         <span class="current">
-                          Page {{ jobs.number }} of {{ jobs.paginator.num_pages }}.
+                          Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.
                         </span>
-                        {% if jobs.has_next %}
+                        {% if profiles.has_next %}
                         <a
                           class="btn btn-success"
-                          href="?page={{ jobs.next_page_number }}{% if request.GET.p %}&p={{ request.GET.p }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                          href="?page={{ profiles.next_page_number }}{% if request.GET.r %}&p={{ request.GET.r }}{% endif %}{% if request.GET.s %}&q={{ request.GET.s }}{% endif %}"
                           >Next</a
                         >
                         <a
                           class="btn btn-primary"
-                          href="?page={{ jobs.paginator.num_pages }}{% if request.GET.p %}&p={{ request.GET.p }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                          href="?page={{ profiles.paginator.num_pages }}{% if request.GET.r %}&p={{ request.GET.r }}{% endif %}{% if request.GET.s %}&q={{ request.GET.s }}{% endif %}"
                           >Last &raquo;</a
                         >
                         {% endif %}
@@ -103,14 +108,14 @@
 								<div class="clearfix m-b30">
 									<form
 									class="form-signin mt-4"
-									action="{% url 'job-search-list' %}"
+									action="{% url 'search-candidates' %}"
 									method="get"
 									>
 									<div class="clearfix m-b30">
 										<h5 class="widget-title font-weight-700 text-uppercase">Job Title, Skills, Type or Company</h5>
 									
 										<input
-										  name="p"
+										  name="r"
 										  type="text"
 										  class="form-control"
 										  placeholder="Enter Job Title, Skills, Type or Company"
@@ -119,7 +124,7 @@
 									  <div class="clearfix m-b10">
 										<h5 class="widget-title font-weight-700 m-t0 text-uppercase">Location</h5>
 										<input
-										  name="q"
+										  name="s"
 										  type="text"
 										  class="form-control"
 										  placeholder="Enter Job Location"
@@ -128,7 +133,7 @@
 									</div>
 									<div class="form-group">
 									  <button class="btn btn-lg btn-primary btn-block" type="submit">
-										Search Jobs
+										Apply Filters
 									  </button>
 									</div>
 								  </form>
@@ -144,5 +149,9 @@
    
     <!-- Content END-->
 	{% else %}
+	<p class="text-center">No candidates found!</p>
+	<br />
+	{% endif %}
+  </div>
+  {% endblock content %}
 
-{% endif %} {% endblock content %}
