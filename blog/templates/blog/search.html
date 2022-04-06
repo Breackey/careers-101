@@ -57,7 +57,7 @@
         <br/>
         <h4 class="widget-title">Search for posts</h4>
         <form method="get">
-        {{ form.as_p }}
+        {{ form|crispy }}
         <input type="submit" class="site-button" value="Search">
         </form>
         {% endif %}

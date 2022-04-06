@@ -1,0 +1,49 @@
+{% extends "users/layout.html" %}
+{% load crispy_forms_tags %} 
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+    <!-- Content -->
+    <div class="page-content bg-white">
+      <!-- inner page banner -->
+      <div class="dez-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/banner/bnr2.jpg);">
+          <div class="container">
+              <div class="dez-bnr-inr-entry">
+                  <h1 class="text-white">Register</h1>
+        <!-- Breadcrumb row -->
+        <div class="breadcrumb-row">
+          <ul class="list-inline">
+            <li><a href="#">Home</a></li>
+            <li>Register</li>
+          </ul>
+        </div>
+        <!-- Breadcrumb row END -->
+              </div>
+          </div>
+      </div>
+      <!-- inner page banner END -->
+      <!-- contact area -->
+      <div class="section-full content-inner shop-account">
+          <!-- Product -->
+          <div class="container">
+              <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="font-weight-700 m-t0 m-b20">{% trans "Sign Up" %}</h3>
+        </div>
+      </div>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}"style="color:blue;">Sign In</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+
+{% endblock %}

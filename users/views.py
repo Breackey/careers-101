@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
 from users.forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
+
 
 def login(request):
-    return render(request, 'users/login.html')
+    return render(request, 'account/login.html')
 
 def contactView(request):
     if request.method == 'GET':

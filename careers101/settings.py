@@ -117,16 +117,16 @@ WSGI_APPLICATION = 'careers101.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-""" if DEBUG:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     } 
-else:  """
+else:  
 
-DATABASES = {
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'careers101db', 
@@ -217,7 +217,6 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails") """
 
 DEFAULT_FROM_EMAIL = 'careeropp101@gmail.com'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'careeropp101@gmail.com'
 EMAIL_HOST_PASSWORD = 'Leblanc94'
@@ -232,6 +231,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'login'
 SITE_ID = 2
 LOGIN_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -272,9 +275,6 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 SOCIALACCOUNT_QUERY_EMAIL = True
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = False
 
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
@@ -290,7 +290,10 @@ if DEBUG:
     SECURE_SSL_REDIRECT = False
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
+    EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 else:
     CSRF_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
