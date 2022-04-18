@@ -24,7 +24,7 @@ class Profile(models.Model):
     grad_year = models.IntegerField(blank=True)
     looking_for = models.CharField(
         max_length=30, choices=CHOICES, default='Full Time', null=True)
-    slug = AutoSlugField(populate_from='user', unique=True)
+    slug = AutoSlugField(populate_from='user', unique=True, max_length=255)
 
     def get_absolute_url(self):
         return "/profile/{}".format(self.slug)
