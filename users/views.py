@@ -1,17 +1,86 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from users.forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 
+from django.contrib import messages, auth
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, FormView, RedirectView
+from users.forms import *
+from users.models import User
+
+
+class RegisterEmployeeView(CreateView):
+    model = User
+    form_class = EmployeeRegistrationForm
+    template_name = 'account/candidate/register.html'
+    success_url = '/'
+
+    extra_context = {
+        'title': 'Register'
+    }
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return HttpResponseRedirect(self.get_success_url())
+        return super(RegisterEmployeeView,self).dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+
+        form = self.form_class(data=request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data.get("password1")
+            user.set_password(password)
+            user.save()
+            return redirect('account_login')
+        else:
+            return render(request, 'account/candidate/register.html', 
+                        {'form': form,
+                        'candidate_regiser': "active",})
+
+
+class RegisterEmployerView(CreateView):
+    model = User
+    form_class = EmployerRegistrationForm
+    template_name = 'account/recruiter/register.html'
+    success_url = '/'
+
+    extra_context = {
+        'title': 'Register'
+    }
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return HttpResponseRedirect(self.get_success_url())
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+
+        form = self.form_class(data=request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data.get("password1")
+            user.set_password(password)
+            user.save()
+            return redirect('account_login')
+        else:
+            return render(request, 'account/recruiter/register.html', 
+                            {'form': form,
+                            'recruiter_register': "active",})
+
+
 
 def login(request):
     return render(request, 'account/login.html')
 
-def contactView(request):
+""" def contactView(request):
     if request.method == 'GET':
         form = ContactForm()
     else:
@@ -25,7 +94,7 @@ def contactView(request):
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('success')
-    return render(request, "users/contact.html", {'form': form})
+    return render(request, "users/contact.html", {'form': form}) """
 
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')

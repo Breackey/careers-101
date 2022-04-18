@@ -6,14 +6,17 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
+from users.views import *
 
 sitemaps= {'posts': PostSitemap}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('candidate/register', RegisterEmployeeView.as_view(), name='candidate-register'),
+    path('recruiter/register', RegisterEmployerView.as_view(), name='recruiter-register'),
     #path('login/', views.login, name='login'),
     path('account/', views.account, name='account'),
-    path('contact-us/', views.contactView, name='contact'),
+#    path('contact-us/', views.contactView, name='contact'),
     path('success/', views.successView, name='success'),
     #path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('privacy-policy/', views.privacy, name='privacy-policy'),

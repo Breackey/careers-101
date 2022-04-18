@@ -1,0 +1,103 @@
+{% extends 'users/layout.html' %}
+{% block title %}
+    Candidate Register
+{% endblock %}
+
+{% block content %}
+<body id="bg">
+<div class="page-wraper">
+ 
+    <!-- Content -->
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dez-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/banner/bnr2.jpg);">
+            <div class="container">
+                <div class="dez-bnr-inr-entry">
+                    <h1 class="text-white">New account</h1>
+					<!-- Breadcrumb row -->
+					<div class="breadcrumb-row">
+						<ul class="list-inline">
+							<li><a href="#">Home</a></li>
+							<li>Register</li>
+						</ul>
+					</div>
+					<!-- Breadcrumb row END -->
+                </div>
+            </div>
+        </div>
+        <!-- inner page banner END -->
+        <!-- contact area -->
+        <div class="section-full content-inner shop-account">
+            <!-- Product -->
+            <div class="container">
+                <div class="row">
+					<div class="col-md-12 text-center">
+						<h3 class="font-weight-700 m-t0 m-b20">Create An Account</h3>
+					</div>
+				</div>
+                <div class="row">
+					<div class="col-md-12 m-b30">
+						<div class="p-a30 border-1  max-w500 m-auto">
+							<div class="tab-content">
+								{% if form.errors %}
+								{% for field in form %}
+									{% for error in field.errors %}
+										<div class="alert alert-danger alert-dismissable">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>{{ error|escape }}</strong>
+										</div>
+									{% endfor %}
+								{% endfor %}
+								{% for error in form.non_field_errors %}
+									<div class="alert alert-danger alert-dismissable">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>{{ error|escape }}</strong>
+									</div>
+								{% endfor %}
+							{% endif %}
+							<form action="" method="post">
+								{% csrf_token %}
+								{% for field in form %}
+									{% if field.name == 'gender' %}
+				
+										<div class="form-group">
+											<label for="gender">Gender</label>
+											<br>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="gender" id="male gender"
+													   value="male">
+												<label class="form-check-label" for="male">Male</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="gender" id="female"
+													   value="female">
+												<label class="form-check-label" for="female">Female</label>
+											</div>
+										</div>
+				
+									{% else %}
+				
+										<div class="form-group">
+											<label for="id_{{ field.name }}">{{ field.label }}</label>
+											<input type="{{ field.field.widget.input_type }}"
+												   class="form-control"
+												   name="{{ field.name }}"
+												   id="id_{{ field.name }}"
+												   placeholder="{{ field.field.widget.attrs.placeholder }}">
+										</div>
+				
+									{% endif %}
+								{% endfor %}
+								<div class="text-center">
+									<button type="submit" class="btn btn-success"><i class="fa fa-user-md"></i> Register
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+				
+				{% endblock %}

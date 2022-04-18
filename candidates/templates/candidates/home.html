@@ -14,12 +14,12 @@
     <div class=" job-search-form">
       <h2 class="text-center">The Easiest Way to Get Your New Job</h2>
       <h3>Find Jobs, Employment & Career Opportunities</h3>
-      <form>
+      <form action="{% url 'job-search-list' %}" method="get">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Job Title, Keywords Or Company Name">
-          <input type="text" class="form-control" placeholder="City, Province Or Region">
+          <input type="text" name="p" class="form-control" placeholder="Job Title, Keywords Or Company Name">
+          <input type="text" name="q" class="form-control" placeholder="City, Province Or Region">
           <div class="input-group-prepend">
-            <button class="site-button">Search</button>
+            <button class="site-button" type="submit">Search</button>
           </div>
         </div>
       </form>
@@ -278,10 +278,10 @@
 											<span>{{job.company}}</span>
 										</div>
 										<div class="salary-bx">
-											<span><i class="fa fa-clock-o"></i> Deadline: {{job.date_posted|date:"F d, Y"}}</span>
+											<span>Deadline: {{job.date_posted|date:"F d, Y"}}</span>
 										</div>
 									</div>
-									<span class="post-like fa fa-heart-o"><a href="{% url 'save-job' job.slug %}"></a></span>
+									<span class="post-like fa fa-heart-o"></span>
 								</a>
 							</li>
 						

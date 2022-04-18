@@ -8,7 +8,7 @@ from .forms import ProfileUpdateForm, NewSkillForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User
+from users.models import User
 from django.contrib import messages
 from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin

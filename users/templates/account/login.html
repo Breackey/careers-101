@@ -40,12 +40,12 @@
         
         <div class="signin  card-body">
           {% if user.is_authenticated %}
-              <p>Welcome, {{ user.username }} !</p>
+              <p>Welcome, {{ user.first_name }} !</p>
 
           {% else %}
           <br/>
-           <p>{% blocktrans %}If you have not created an account yet, then please
-            <a href="{{ signup_url }}" style="color:blue;">Sign Up</a> first.{% endblocktrans %}</p>
+           <p>If you have not created an account yet, then please Sign Up as a 
+            <a href="{% url 'candidate-register' %}" style="color:blue;"><b>Candidate</b></a> OR an <a href="{% url 'recruiter-register' %}" style="color:blue;"><b>Employer</b></a> first.</p>
           <br />
         
               <form class="login ui form" method="POST" action="{% url 'account_login' %}">

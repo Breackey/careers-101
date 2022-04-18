@@ -60,8 +60,15 @@
                                                                         <span>Deadline: {{job.date_posted|date:"F d, Y"}}</span>
                                                                     </div>
                                                                 </div>
+                                                                
                                                                 <span class="post-like fa fa-heart-o"></span>
+                                                                <hr/>
+                                                                <span style="font-size: 18px; text-align:center"
+                                                                >You have <b class="text-success">{{ common }} </b>out of <b class="text-danger">{{ job_skill }}</b> skills required for this job.</span
+                                                              >
+                                                         
                                                             </a>
+                                                            
                                                         </li>
                                                         {% endfor %}
                                                     </ul>

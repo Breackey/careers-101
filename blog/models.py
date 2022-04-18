@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from users.models import User
 from django.utils.text import slugify
 from django.urls import reverse
 from taggit.managers import TaggableManager
