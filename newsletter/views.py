@@ -10,11 +10,7 @@ from .models import Newsletter, NewsletterUser
 from .forms import NewsletterUserSubscribeForm, NewsletterCreationForm
 
 from django.core.exceptions import PermissionDenied
-from debug.decorators import log_exceptions
- 
 
-
-@log_exceptions('newsletter_subscribe')
 def newsletter_subscribe(request):
     form = NewsletterUserSubscribeForm(request.POST or None)
     if form.is_valid():
@@ -46,7 +42,6 @@ def newsletter_subscribe(request):
     template = "newsletters/subscribe.html"
     return render(request,template,context)
 
-@log_exceptions('newsletter_unsubscribe')
 def newsletter_unsubscribe(request):
     form = NewsletterUserSubscribeForm(request.POST or None)
     if form.is_valid():
@@ -78,7 +73,6 @@ def newsletter_unsubscribe(request):
     template = "newsletters/unsubscribe.html"
     return render(request,template,context)
 
-@log_exceptions('control_newsletter')
 def control_newsletter(request):
    
     form = NewsletterCreationForm(request.POST or None)
@@ -101,7 +95,6 @@ def control_newsletter(request):
     template = 'control_panel/control_newsletter.html'
     return render(request, template, context)
 
-@log_exceptions('control_newsletter_list')
 def control_newsletter_list(request):
     newsletters = Newsletter.objects.all()
     paginator = Paginator(newsletters,10)
@@ -128,7 +121,6 @@ def control_newsletter_list(request):
     template = 'control_panel/control_newsletter_list.html'
     return render(request, template, context)
 
-@log_exceptions('control_newsletter_detail')
 def control_newsletter_detail(request,pk):
     newsletter = get_object_or_404(Newsletter, pk=pk)
 
@@ -139,7 +131,6 @@ def control_newsletter_detail(request,pk):
     template = 'control_panel/control_newsletter_detail.html'
     return render(request, template, context)
 
-@log_exceptions('control_newsletter_edit')
 def control_newsletter_edit(request,pk):
     newsletter = get_object_or_404(Newsletter, pk=pk)
 
@@ -167,7 +158,6 @@ def control_newsletter_edit(request,pk):
     template = 'control_panel/control_newsletter.html'
     return render(request, template, context)
 
-@log_exceptions('control_newsletter_delete')
 def control_newsletter_delete(request,pk):
     newsletter = get_object_or_404(Newsletter, pk=pk)
 

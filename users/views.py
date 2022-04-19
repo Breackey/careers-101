@@ -8,11 +8,10 @@ from django.contrib import messages, auth
 from django.views.generic import CreateView, FormView, RedirectView
 from users.forms import *
 from users.models import User
-from debug.decorators import log_exceptions
+
 from django.utils.decorators import method_decorator
 
 
-@method_decorator(log_exceptions, name='post')
 class RegisterEmployeeView(CreateView):
     model = User
     form_class = EmployeeRegistrationForm
@@ -44,7 +43,6 @@ class RegisterEmployeeView(CreateView):
                         'candidate_regiser': "active",})
 
 
-@method_decorator(log_exceptions, name='post')
 class RegisterEmployerView(CreateView):
     model = User
     form_class = EmployerRegistrationForm
@@ -76,7 +74,6 @@ class RegisterEmployerView(CreateView):
                             {'form': form,
                             'recruiter_register': "active",})
 
-@log_exceptions('login')
 def login(request):
     return render(request, 'account/login.html')
 
@@ -96,11 +93,9 @@ def login(request):
             return redirect('success')
     return render(request, "users/contact.html", {'form': form}) """
 
-@log_exceptions('successView')
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')
 
-@log_exceptions('account')
 @login_required
 def account(request):
     context = {
@@ -108,14 +103,11 @@ def account(request):
     }
     return render(request, 'users/account.html', context)
 
-@log_exceptions('privacy')
 def privacy(request):
     return render(request, 'users/privacy.html')
 
-@log_exceptions('terms')
 def terms(request):
     return render(request, 'users/terms.html')
 
-@log_exceptions('pricing')
 def pricing(request):
     return render(request, 'users/pricing.html')
