@@ -9,6 +9,9 @@ from blog.sitemaps import PostSitemap
 from users.views import *
 from users.views import RegisterEmployeeView, RegisterEmployerView
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 sitemaps= {'posts': PostSitemap}
 
 urlpatterns = [
@@ -34,8 +37,10 @@ urlpatterns = [
 
  # SEO
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-						name='django.contrib.sitemaps.views.sitemap')
-
+						name='django.contrib.sitemaps.views.sitemap'),
+    
+#sentry
+    path('sentry-debug/', trigger_error),
 ]
 
 if settings.DEBUG:

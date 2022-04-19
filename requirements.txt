@@ -80,3 +80,4 @@ tzdata==2021.5
 
 django-user-visit==0.5.1
 
+sentry-sdk==1.5.10
