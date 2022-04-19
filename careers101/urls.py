@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
 from users.views import *
+from users.views import RegisterEmployeeView, RegisterEmployerView
 
 sitemaps= {'posts': PostSitemap}
 

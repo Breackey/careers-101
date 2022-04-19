@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'newsletter',
     'recruiters',
     'candidates',
+    'debug',
     
     'pwa',
     'bootstrap4',

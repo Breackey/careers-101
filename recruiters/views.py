@@ -12,8 +12,11 @@ from django.contrib import messages
 from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
+from debug.decorators import log_exceptions
+ 
 
 
+@log_exceptions('rec_details')
 def rec_details(request):
     context = {
         'rec_home_page': "active",
@@ -23,6 +26,7 @@ def rec_details(request):
 
 
 @login_required
+@log_exceptions('add_job')
 def add_job(request):
     user = request.user
     if request.method == "POST":
@@ -43,6 +47,7 @@ def add_job(request):
 
 
 @login_required
+@log_exceptions('edit_job')
 def edit_job(request, slug):
     user = request.user
     job = get_object_or_404(Job, slug=slug)
@@ -63,6 +68,7 @@ def edit_job(request, slug):
 
 
 @login_required
+@log_exceptions('job_detail')
 def job_detail(request, slug):
     job = get_object_or_404(Job, slug=slug)
     context = {
@@ -73,6 +79,7 @@ def job_detail(request, slug):
 
 
 @login_required
+@log_exceptions('all_jobs')
 def all_jobs(request):
     jobs = Job.objects.filter(recruiter=request.user).order_by('-date_posted')
     paginator = Paginator(jobs, 20)
@@ -87,6 +94,7 @@ def all_jobs(request):
 
 
 @login_required
+@log_exceptions('search_candidates')
 def search_candidates(request):
     profile_list = Profile.objects.all()
     profiles = []
@@ -130,6 +138,7 @@ def search_candidates(request):
 
 
 @login_required
+@log_exceptions('job_candidate_search')
 def job_candidate_search(request, slug):
     job = get_object_or_404(Job, slug=slug)
     relevant_candidates = []
@@ -164,6 +173,7 @@ def job_candidate_search(request, slug):
 
 
 @login_required
+@log_exceptions('applicant_list')
 def applicant_list(request, slug):
     job = get_object_or_404(Job, slug=slug)
     applicants = Applicants.objects.filter(job=job).order_by('date_posted')
@@ -181,6 +191,7 @@ def applicant_list(request, slug):
 
 
 @login_required
+@log_exceptions('selected_list')
 def selected_list(request, slug):
     job = get_object_or_404(Job, slug=slug)
     selected = Selected.objects.filter(job=job).order_by('date_posted')
@@ -197,6 +208,7 @@ def selected_list(request, slug):
 
 
 @login_required
+@log_exceptions('select_applicant')
 def select_applicant(request, can_id, job_id):
     job = get_object_or_404(Job, slug=job_id)
     profile = get_object_or_404(Profile, slug=can_id)
@@ -208,6 +220,7 @@ def select_applicant(request, can_id, job_id):
 
 
 @login_required
+@log_exceptions('remove_applicant')
 def remove_applicant(request, can_id, job_id):
     job = get_object_or_404(Job, slug=job_id)
     profile = get_object_or_404(Profile, slug=can_id)
@@ -218,6 +231,7 @@ def remove_applicant(request, can_id, job_id):
 
 
 @login_required
+@log_exceptions('filled')
 def filled(request, job_id=None):
     job = Job.objects.get(recruiter=request.user, id=job_id)
     job.filled = True
@@ -226,6 +240,7 @@ def filled(request, job_id=None):
 
 
 """ @login_required
+@log_exceptions('rec_details')
 def all_jobs(request, slug):
     jobs = Job.objects.filter(recruiter=request.user).order_by('-date_posted')
     job = get_object_or_404(Job, slug=slug)

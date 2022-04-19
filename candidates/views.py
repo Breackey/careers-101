@@ -16,8 +16,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 from blog.models import Post
+from debug.decorators import log_exceptions
+ 
 
 
+@log_exceptions('home')
 def home(request):
     posts = Post.objects.all()
     jobs = Job.objects.all()[:4]
@@ -35,14 +38,14 @@ def home(request):
 
     return render(request, 'candidates/home.html', context)
 
-
-
+@log_exceptions('candidate_dashboard')
 def candidate_dashboard(request):
     context = {
         'c_dashboard': "active",
     }
     return context
 
+@log_exceptions('job_search_list')
 def job_search_list(request):
     query = request.GET.get('p')
     loc = request.GET.get('q')
@@ -88,6 +91,7 @@ def job_search_list(request):
     }
     return render(request, 'candidates/job_search_list.html', context)
 
+@log_exceptions('job_detail')
 @login_required
 def job_detail(request, slug):
     job = get_object_or_404(Job, slug=slug)
@@ -123,14 +127,14 @@ def job_detail(request, slug):
 
     return render(request, 'candidates/job_detail.html', {'job': job, 'profile': profile, 'apply_button': apply_button, 'save_button': save_button, 'relevant_jobs': relevant_jobs, 'candidate_navbar': 1})
 
-
+@log_exceptions('saved_jobs')
 @login_required
 def saved_jobs(request):
     jobs = SavedJobs.objects.filter(
         user=request.user).order_by('-date_posted')
     return render(request, 'candidates/saved_jobs.html', {'jobs': jobs, 'candidate_navbar': 1})
 
-
+@log_exceptions('applied_jobs')
 @login_required
 def applied_jobs(request):
     jobs = AppliedJobs.objects.filter(
@@ -146,7 +150,7 @@ def applied_jobs(request):
     zipped = zip(jobs, statuses)
     return render(request, 'candidates/applied_jobs.html', {'zipped': zipped, 'candidate_navbar': 1})
 
-
+@log_exceptions('intelligent_search')
 @login_required
 def intelligent_search(request):
     relevant_jobs = []
@@ -183,7 +187,7 @@ def intelligent_search(request):
     }
     return render(request, 'candidates/intelligent_search.html', context)
 
-
+@log_exceptions('my_profile')
 @login_required
 def my_profile(request):
     you = request.user
@@ -207,7 +211,7 @@ def my_profile(request):
     }
     return render(request, 'candidates/profile.html', context)
 
-
+@log_exceptions('edit_profile')
 @login_required
 def edit_profile(request):
     you = request.user
@@ -226,7 +230,7 @@ def edit_profile(request):
     }
     return render(request, 'candidates/edit_profile.html', context)
 
-
+@log_exceptions('profile_view')
 @login_required
 def profile_view(request, slug):
     p = Profile.objects.filter(slug=slug).first()
@@ -239,13 +243,13 @@ def profile_view(request, slug):
     }
     return render(request, 'candidates/profile.html', context)
 
-
+@log_exceptions('candidate_details')
 def candidate_details(request):
     return render(request, 'candidates/details.html')
 
-
 @login_required
 @csrf_exempt
+@log_exceptions('delete_skill')
 def delete_skill(request, pk=None):
     if request.method == 'POST':
         id_list = request.POST.getlist('choices')
@@ -253,7 +257,7 @@ def delete_skill(request, pk=None):
             Skill.objects.get(id=skill_id).delete()
         return redirect('my-profile')
 
-
+@log_exceptions('save_job')
 @login_required
 def save_job(request, slug):
     user = request.user
@@ -261,7 +265,7 @@ def save_job(request, slug):
     saved, created = SavedJobs.objects.get_or_create(job=job, user=user)
     return HttpResponseRedirect('/job/{}'.format(job.slug))
 
-
+@log_exceptions('apply_job')
 @login_required
 def apply_job(request, slug):
     user = request.user
@@ -271,7 +275,7 @@ def apply_job(request, slug):
         job=job, applicant=user)
     return HttpResponseRedirect('/job/{}'.format(job.slug))
 
-
+@log_exceptions('remove_job')
 @login_required
 def remove_job(request, slug):
     user = request.user
