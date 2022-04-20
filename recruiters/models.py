@@ -37,7 +37,7 @@ class Job(models.Model):
     link = models.URLField(null=True, blank=True)
     slug = AutoSlugField(populate_from='title', unique=True, null=True, max_length=255)
     date_posted = models.DateTimeField(default=timezone.now)
-    deadline = models.DateField(null=True, blank=True)
+    deadline = models.DateField(null=True, blank=True, default=None)
     filled = models.BooleanField(default=False)
     
     class Meta:
