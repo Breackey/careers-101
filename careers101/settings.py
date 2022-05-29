@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from turtle import end_fill
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '2(4@hs$*qu#b_thpogah@*djux6&(hq)_@aw=#z616w457fl$1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['careers101.co.ke',
                  'www.careers101.co.ke',
@@ -93,7 +94,7 @@ ROOT_URLCONF = 'careers101.urls'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-   'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 TEMPLATES = [
@@ -117,25 +118,12 @@ WSGI_APPLICATION = 'careers101.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     } 
-else:  
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'careers101db', 
-            'USER': 'breackey', 
-            'PASSWORD': 'Leblanc94*',
-            'HOST': '127.0.0.1', 
-            'PORT': '',
-        }
-    }
 
 
 # Password validation
@@ -199,12 +187,12 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, "media" )
 PROJECT_ROOT   =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/' 
-
+"""
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'staticfiles'),
 ) 
-"""
+
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
@@ -286,7 +274,7 @@ prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
 
 
-
+""" 
 if DEBUG: 
     SECURE_SSL_REDIRECT = False
     CSRF_COOKIE_SECURE = False
@@ -298,21 +286,4 @@ else:
     SESSION_COOKIE_SECURE = True
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     ACCOUNT_EMAIL_VERIFICATION = 'none'
-
-#sentry config
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-sentry_sdk.init(
-    dsn="https://0ea770a9e1c04759b09e54ca36889c3f@o1211520.ingest.sentry.io/6348573",
-    integrations=[DjangoIntegration()],
-
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1,
-
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)
+ """
