@@ -199,12 +199,12 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, "media" )
 PROJECT_ROOT   =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/' 
-"""
+
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'staticfiles'),
 ) 
-
+"""
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
@@ -229,7 +229,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 LOGIN_URL = 'account_login'
-SITE_ID = 2
+SITE_ID = 3
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -298,3 +298,21 @@ else:
     SESSION_COOKIE_SECURE = True
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+#sentry config
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://0ea770a9e1c04759b09e54ca36889c3f@o1211520.ingest.sentry.io/6348573",
+    integrations=[DjangoIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)

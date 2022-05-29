@@ -152,11 +152,84 @@
     {% elif request.user.is_authenticated and request.user.role == 'candidate' %}
     <header class="site-header mo-left header fullwidth"style="height: 81.7076px;">
       <!-- main header -->
+
+      <header class="site-header mo-left header fullwidth"style="height: 81.7076px;">
+        <!-- main header -->
+        <div class="sticky-header main-bar-wraper navbar-expand-lg">
+            <div class="main-bar clearfix">
+               
+              <div class="container clearfix">
+                  <a class="navbar-brand" href="{% url 'detail-candidates' %}">
+                    <!-- website logo -->
+                    <div class="logo-header mostion">
+                      <a href="/"><img 
+                          src="{% static 'images/logo/theicon.PNG' %}" 
+                          class="logo" 
+                          alt="careers101"
+                          style="height: 80%; width: 80%;"
+                         
+                          ></a>
+                 
+                    </div>
+                   </a>
+              <!-- nav toggle button -->
+              <!-- nav toggle button -->
+              <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button>
+    
+    
+              <!-- main nav -->
+    
+          <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
+                <ul class="nav navbar-nav">
+                  <li class = "nav-item {{ home_page }}"><a class=" dez-page " href="{% url 'home' %}">Home</a>
+                  </li>
+                  <li class = "nav-item  {{ jobs_page }}"><a class=" dez-page " href="{% url 'job-search-list' %}"> Jobs </a>
+                  </li>
+                  <li class = "nav-item {{ post_list }} "><a href="{% url 'blog:post_list' %}">Blog </a>
+                  </li>
+                    {% comment %} <li><a href="{% url 'contact' %}" class="dez-page">Contact Us</a></li> {% endcomment %}
+                  <li class="nav-item  {{ profile_page }} or {{ account_page }} or {{ intel_page }}">
+                    <a href="#"> <i class="fa fa-chevron-down"></i>
+
+                    {% if request.user.role == 'candidate' %}
+                      {{ request.user.username }}
+                    {% else %}
+                    {{ request.user.username }}
+                    {% endif %}
+                    </a>
+                        
+                      <ul class="sub-menu">
+                        <li class = "nav-item {{ intel_page }}"><a class=" dez-page " href="{% url 'intelligent-search' %}">Relevant Jobs</a> 
+                        </li>
+                        <li class = "nav-item  {{ profile_page }}"><a class=" dez-page" href="{% url 'my-profile' %}">My Profile</a>
+                        </li>
+                        <li class = "nav-item {{ account_page }} "><a class=" dez-page " href="{% url 'account' %}" >My Account</a>
+                        </li>
+                        <li><a href="{% url 'account_logout' %}" class="dez-page">Log Out</a></li>
+                      </ul>
+                        
+                  </li>
+                      
+
+
+                    
+                </ul>			
+                </div></div>
+              </div>
+          </div>
+        </div>
+      <!-- main header END -->
+      </header>
+
       <div class="sticky-header main-bar-wraper navbar-expand-lg">
           <div class="main-bar clearfix">
              
             <div class="container clearfix">
-                <a class="navbar-brand" href="{% url 'detail-candidates' %}">
+                <a class="navbar-brand" href="{% url '' %}">
                   <!-- website logo -->
                   <div class="logo-header mostion">
                     <a href="/"><img 
@@ -267,9 +340,9 @@
                       <li class = "nav-item  {{ manage_jobs_page }} or {{ search_candidates_page }} or {{ add_job_page }}" >
                         <a href="#"> <i class="fa fa-chevron-down"></i>
                       {% if request.user.role == 'recruiter' %}
-                      {{ request.user.first_name }} {{ request.user.last_name }}
+                      {{ request.user.username }} , {{ request.user.last_name }}
                           {% else %}
-                      {{ request.user.first_name }}
+                      {{ request.user.username }}
                         {% endif %}
                       </a>
                         
