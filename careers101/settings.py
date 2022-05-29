@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-from turtle import end_fill
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,12 +117,25 @@ WSGI_APPLICATION = 'careers101.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DATABASES = {
+if DEBUG:
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     } 
+else:  
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'careers101db', 
+            'USER': 'breackey', 
+            'PASSWORD': 'Leblanc94*',
+            'HOST': '127.0.0.1', 
+            'PORT': '',
+        }
+    }
 
 
 # Password validation
@@ -274,7 +286,7 @@ prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
 
 
-""" 
+
 if DEBUG: 
     SECURE_SSL_REDIRECT = False
     CSRF_COOKIE_SECURE = False
@@ -286,4 +298,3 @@ else:
     SESSION_COOKIE_SECURE = True
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     ACCOUNT_EMAIL_VERIFICATION = 'none'
- """
