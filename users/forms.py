@@ -23,7 +23,7 @@ class EmployeeRegistrationForm(UserCreationForm):
 
         self.fields['username'].widget.attrs.update(
             {
-                'placeholder': 'Enter Full Name',
+                'placeholder': 'Enter Username',
             }
         )
         self.fields['email'].widget.attrs.update(
@@ -46,8 +46,8 @@ class EmployeeRegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'gender']
         error_messages = {
-            'full_name': {
-                'required': 'Fullname is required',
+            'username': {
+                'required': 'Username is required',
                 'max_length': 'Name is too long'
             },
         
