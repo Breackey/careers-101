@@ -46,14 +46,11 @@ class EmployeeRegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'gender']
         error_messages = {
-            'username': {
-                'required': 'Username is required',
+            'full_name': {
+                'required': 'Fullname is required',
                 'max_length': 'Name is too long'
             },
-            'last_name': {
-                'required': 'Last name is required',
-                'max_length': 'Last Name is too long'
-            },
+        
             'gender': {
                 'required': 'Gender is required'
             }
