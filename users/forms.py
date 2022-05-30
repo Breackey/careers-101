@@ -81,7 +81,6 @@ class EmployerRegistrationForm(UserCreationForm):
         self.fields['last_name'].label = "Company Location"
         self.fields['password1'].label = "Password"
         self.fields['password2'].label = "Confirm Password"
-
         self.fields['username'].widget.attrs.update(
             {
                 'placeholder': 'Enter Company Name',
